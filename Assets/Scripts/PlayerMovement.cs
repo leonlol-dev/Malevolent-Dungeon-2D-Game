@@ -56,4 +56,9 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+
+    public void SetMovementSpeed(float newMovementSpeed)
+    {
+        moveSpeed = newMovementSpeed;
+    }
 }
