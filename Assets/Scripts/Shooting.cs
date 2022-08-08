@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
         if (Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
@@ -34,11 +34,11 @@ public class Shooting : MonoBehaviour
             Shoot();
         }
 
-        
+
 
     }
 
-    void Shoot()
+    private void Shoot()
     {
         GameObject sword = Instantiate(projectilePrefab, origin.position, origin.rotation);
         Rigidbody2D rb = sword.GetComponent<Rigidbody2D>();
@@ -47,22 +47,22 @@ public class Shooting : MonoBehaviour
 
 
     // Methods to change variables
-    void SetBulletForce(float newBulletForce)
+    public void SetBulletForce(float newBulletForce)
     {
         bulletForce = newBulletForce;
     }
 
-    void ResetBulletForce()
+    public void ResetBulletForce()
     {
         bulletForce = defaultBulletForce;
     }
 
-    void SetFireRate(float newFireRate)
+    public void SetFireRate(float newFireRate)
     {
         fireRate = newFireRate;
     }
 
-    void ResetFireRate()
+    public void ResetFireRate()
     {
         fireRate = defaultFireRate;
     }
