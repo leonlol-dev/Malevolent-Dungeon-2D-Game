@@ -7,8 +7,10 @@ public class Shooting : MonoBehaviour
     public Transform origin;
     public GameObject projectilePrefab;
     public Camera cam;
-
-
+    public AudioSource aSource;
+    public AudioClip attackSound;
+    
+   
     private float defaultBulletForce = 0.0f;
     public float bulletForce = 20f;
 
@@ -20,6 +22,7 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
+        //Set default attack variables
         defaultBulletForce = bulletForce;
         defaultFireRate = fireRate;
     }
@@ -34,12 +37,14 @@ public class Shooting : MonoBehaviour
             Shoot();
         }
 
-
-
     }
 
     private void Shoot()
     {
+        //Play attack sound.
+        aSource.PlayOneShot(attackSound);
+
+        //Instantiate and apply force to projectile.
         GameObject sword = Instantiate(projectilePrefab, origin.position, origin.rotation);
         Rigidbody2D rb = sword.GetComponent<Rigidbody2D>();
         rb.AddForce(origin.up * bulletForce, ForceMode2D.Impulse);
@@ -67,5 +72,6 @@ public class Shooting : MonoBehaviour
         fireRate = defaultFireRate;
     }
     
+
 
 }
