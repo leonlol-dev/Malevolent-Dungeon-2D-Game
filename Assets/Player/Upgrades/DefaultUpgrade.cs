@@ -6,10 +6,10 @@ using UnityEngine;
 public class DefaultUpgrade : Upgrade
 {
     // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
         
     }
 
-  
+
 }

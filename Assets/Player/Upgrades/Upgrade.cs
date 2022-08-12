@@ -10,5 +10,5 @@ public abstract class Upgrade : ScriptableObject
 
     [TextArea(15, 20)]
     public string description;
-    
+   
 }

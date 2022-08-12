@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryObject : ScriptableObject
 {
-    public List<Upgrade> Container = new List<Upgrade>();
+    public List<InventorySlot> Container = new List<InventorySlot>();
     public void AddUpgrade(Upgrade _upgrade, int _amount)
     {
         bool hasItem = false;
@@ -12,11 +12,19 @@ public class InventoryObject : ScriptableObject
         {
             if (Container[i].upgrade == _upgrade)
             {
-
+                Container[i].AddAmount(_amount);
+                hasItem = true;
+                break;
             }
+        }
+
+        if (!hasItem)
+        {
+
         }
     }
 }
+
 
 [System.Serializable]
 public class InventorySlot
@@ -25,12 +33,14 @@ public class InventorySlot
     public int amount;
     public InventorySlot(Upgrade _ugprade, int _amount)
     {
-        Upgrade = _ugprade;
+        upgrade = _ugprade;
         amount = _amount;
     }
-    
+
     public void AddAmount(int value)
     {
         amount += value;
     }
 }
+
+
