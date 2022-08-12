@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthbarUI : MonoBehaviour
 {
     public Image healthBarFront;
     public Image healthBarBack;
     public PlayerHealth pHealth;
+    public TextMeshProUGUI text;
 
     public float chipSpeed = 2f;
     
@@ -44,10 +46,15 @@ public class HealthbarUI : MonoBehaviour
     {
         Debug.Log(pHealth.currentHealth);
 
+        //Update Text
+        text.text = ("HP: " + pHealth.currentHealth);
+
+        //Set fill amount variables
         float fillF = healthBarFront.fillAmount;
         float fillB = healthBarBack.fillAmount;
         float hFraction = pHealth.currentHealth / pHealth.maxHealth;
 
+        //If player takes damage, apply chip effect.
         if (fillB > hFraction)
         {
             Debug.Log("fillb less than hfraction");
@@ -59,7 +66,8 @@ public class HealthbarUI : MonoBehaviour
             healthBarBack.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
         }
 
-        if(fillF < hFraction)
+        //If player heals, apply chip effect.
+        if (fillF < hFraction)
         {
             Debug.Log("filla less than hfraction");
             healthBarBack.color = Color.green;

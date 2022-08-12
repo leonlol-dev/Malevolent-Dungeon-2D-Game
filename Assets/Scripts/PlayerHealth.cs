@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     public void RestoreHealth(int heal)
     {
         currentHealth += heal;
-        lerpTimer = 0f;
+        lerpTimer = 0f; 
     }
 
     public void SetMaxHealth(int newMaxHealth)
