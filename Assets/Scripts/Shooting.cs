@@ -6,6 +6,7 @@ public class Shooting : MonoBehaviour
 {
     public Transform origin;
     public GameObject projectilePrefab;
+    public GameObject projectileHomingPrefab;
     public Camera cam;
     public AudioSource aSource;
     public AudioClip attackSound;
@@ -17,14 +18,28 @@ public class Shooting : MonoBehaviour
     private float defaultFireRate = 0.0f;
     public float fireRate = 15f;
 
+    public bool homing = false;
+
 
     private float nextTimeToFire = 0f;
+    private GameObject currentProjectile;
 
     private void Start()
     {
         //Set default attack variables
         defaultBulletForce = bulletForce;
         defaultFireRate = fireRate;
+
+        //Set projectile
+        if(homing)
+        {
+            currentProjectile = projectileHomingPrefab;
+        }
+        else
+        {
+            currentProjectile = projectilePrefab;
+        }
+        
     }
 
     // Update is called once per frame
@@ -45,7 +60,7 @@ public class Shooting : MonoBehaviour
         aSource.PlayOneShot(attackSound);
 
         //Instantiate and apply force to projectile.
-        GameObject sword = Instantiate(projectilePrefab, origin.position, origin.rotation);
+        GameObject sword = Instantiate(currentProjectile, origin.position, origin.rotation);
         Rigidbody2D rb = sword.GetComponent<Rigidbody2D>();
         rb.AddForce(origin.up * bulletForce, ForceMode2D.Impulse);
     }

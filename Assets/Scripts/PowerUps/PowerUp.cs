@@ -25,11 +25,11 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
    
-        //Play the clip.
-        powerUpAudio.Play();
-
         if(collision.gameObject.tag == "Player")
         {
+            //Play the clip.
+            powerUpAudio.Play();
+
             rend.enabled = false;
             Destroy(gameObject, 0.75f);
             powerUpEffect.Apply(collision.gameObject);
