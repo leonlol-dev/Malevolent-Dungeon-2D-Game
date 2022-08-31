@@ -42,14 +42,14 @@ public class PlayerHomingProjectile : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit!");
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 
     private void DestroyTimer()
     {
-        Destroy(this, destroyTimer);
+        Destroy(this.gameObject, destroyTimer);
     }
 }

@@ -45,6 +45,13 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //Check if homing is enabled
+        currentProjectile = projectilePrefab;
+
+        if (homing)
+        {
+            currentProjectile = projectileHomingPrefab;
+        }
 
         if (Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
         {

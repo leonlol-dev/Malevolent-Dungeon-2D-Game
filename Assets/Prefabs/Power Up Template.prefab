@@ -127,11 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpEffect: {fileID: 0}
   powerUpSounds:
-  - {fileID: 8300000, guid: 16edb72f34fedd84298ffcac4d67551f, type: 3}
+  - {fileID: 8300000, guid: f0863632cb8b2254bba71064c9179a0f, type: 3}
   - {fileID: 8300000, guid: 885aa9e3a2c17884ab8d6171e4be356a, type: 3}
   - {fileID: 8300000, guid: 882c5c236af36c948bbb6298cfbc316b, type: 3}
   - {fileID: 8300000, guid: ad8acbde84e91b141baed87bef036ad9, type: 3}
-  - {fileID: 8300000, guid: f0863632cb8b2254bba71064c9179a0f, type: 3}
 --- !u!114 &7263514475380746064
 MonoBehaviour:
   m_ObjectHideFlags: 0

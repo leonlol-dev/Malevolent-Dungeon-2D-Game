@@ -18,7 +18,7 @@ public class PowerUp : MonoBehaviour
         powerUpAudio = GetComponent<AudioSource>();
 
         //Choose a random sound.
-        powerUpAudio.clip = powerUpSounds[Random.Range(0, powerUpSounds.Length)];
+        //powerUpAudio.clip = powerUpSounds[Random.Range(0, powerUpSounds.Length)];
 
     }
 
@@ -28,7 +28,7 @@ public class PowerUp : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             //Play the clip.
-            powerUpAudio.Play();
+            powerUpAudio.PlayOneShot(powerUpSounds[Random.Range(0, powerUpSounds.Length)]);
 
             rend.enabled = false;
             Destroy(gameObject, 0.75f);
