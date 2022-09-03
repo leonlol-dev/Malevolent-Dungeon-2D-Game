@@ -28,18 +28,18 @@ public class HealthbarUI : MonoBehaviour
         UpdateHealthUI();
 
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    pHealth.TakeDamage(Random.Range(5, 10));
-            
-        //}
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            pHealth.TakeDamage(Random.Range(5, 10));
+
+        }
 
 
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    pHealth.RestoreHealth(Random.Range(5, 10));
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            pHealth.RestoreHealth(Random.Range(5, 10));
 
-        //}
+        }
     }
 
     public void UpdateHealthUI()

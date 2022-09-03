@@ -6,7 +6,6 @@ public class Shooting : MonoBehaviour
 {
     public Transform origin;
     public GameObject projectilePrefab;
-    public GameObject projectileHomingPrefab;
     public Camera cam;
     public AudioSource aSource;
     public AudioClip attackSound;
@@ -18,11 +17,13 @@ public class Shooting : MonoBehaviour
     private float defaultFireRate = 0.0f;
     public float fireRate = 15f;
 
-    public bool homing = false;
-
-
     private float nextTimeToFire = 0f;
     private GameObject currentProjectile;
+
+    //Specials
+    [Header("Specials")]
+    public bool homing = false;
+    public GameObject projectileHomingPrefab;
 
     private void Start()
     {
@@ -53,11 +54,14 @@ public class Shooting : MonoBehaviour
             currentProjectile = projectileHomingPrefab;
         }
 
+        //Shooting
         if (Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
+
+        
 
     }
 

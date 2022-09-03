@@ -39,9 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 2158743477
+    locked: 0
+  - name: WallTop
+    uniqueID: 1800069407
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: PlayerProjectiles
     uniqueID: 4243255281
+    locked: 0
+  - name: WallBottom
+    uniqueID: 1926579123
     locked: 0

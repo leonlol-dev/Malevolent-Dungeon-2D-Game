@@ -1,0 +1,10 @@
+Enemy Health Bar
+https://opengameart.org/content/enemy-health-bars
+
+0x72 Dungeon Tileset + Characters
+https://0x72.itch.io/dungeontileset-ii
+
+Astar Pathfinding Project
+https://arongranberg.com/astar/
+
+
