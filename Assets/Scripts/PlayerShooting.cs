@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class PlayerShooting : MonoBehaviour
 {
     public Transform origin;
     public GameObject projectilePrefab;
     public Camera cam;
     public AudioSource aSource;
     public AudioClip attackSound;
-    
    
-    private float defaultBulletForce = 0.0f;
-    public float bulletForce = 20f;
-
-    private float defaultFireRate = 0.0f;
+    //Variables
+    [Header("Modifiers")]
+    public int damage = 1;
     public float fireRate = 15f;
-
-    private float nextTimeToFire = 0f;
-    private GameObject currentProjectile;
+    public float bulletForce = 20f;
 
     //Specials
     [Header("Specials")]
     public bool homing = false;
     public GameObject projectileHomingPrefab;
+
+    //Private
+    private float defaultBulletForce = 0.0f;
+    private float defaultFireRate = 0.0f;
+    private float nextTimeToFire = 0f;
+    private GameObject currentProjectile;
 
     private void Start()
     {

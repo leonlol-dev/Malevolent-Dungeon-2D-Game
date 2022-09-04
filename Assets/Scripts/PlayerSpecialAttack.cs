@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSpecialAttack : MonoBehaviour
 {
     public SpecialAttack specialAtk;
-    public Shooting shootingScript;
+    private GameObject player;
 
     public float cooldown;
     private bool canSpecial;

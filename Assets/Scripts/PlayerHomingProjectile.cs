@@ -9,7 +9,7 @@ public class PlayerHomingProjectile : MonoBehaviour
 
     public float speed = 10f;
     public float rotateSpeed = 50f;
-    public float destroyTimer = 2f;
+    public float destroyTimer = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +45,7 @@ public class PlayerHomingProjectile : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        Destroy(this.gameObject);
+        
     }
 
     private void DestroyTimer()

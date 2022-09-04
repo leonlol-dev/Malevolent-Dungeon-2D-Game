@@ -22,7 +22,7 @@ public class ObjectFloat : MonoBehaviour
     void Update()
     {
         // Spin object on the Y axis.
-        transform.Rotate(new Vector2(0f, Time.deltaTime * degreesPerSecond));
+        //transform.Rotate(new Vector2(0f, Time.deltaTime * degreesPerSecond));
 
         // Make object float up and down.
         tempPos = posOffset;

@@ -9,7 +9,7 @@ public class PowerUp : MonoBehaviour
 
     private SpriteRenderer rend;
     private AudioSource powerUpAudio;
-    
+    private bool activated;
 
     private void Start()
     {
@@ -25,8 +25,11 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
    
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && !activated)
         {
+            //Set bool
+            activated = true;
+
             //Play the clip.
             powerUpAudio.PlayOneShot(powerUpSounds[Random.Range(0, powerUpSounds.Length)]);
 

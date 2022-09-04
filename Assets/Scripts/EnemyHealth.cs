@@ -24,9 +24,5 @@ public class EnemyHealth : MonoBehaviour
         enemyHealth.SetHealth(currentHealth);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
 }
 
