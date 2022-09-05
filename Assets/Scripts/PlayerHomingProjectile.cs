@@ -6,6 +6,7 @@ public class PlayerHomingProjectile : MonoBehaviour
 {
     private Transform target;
     private Rigidbody2D rb;
+    private bool targetFound;
 
     public float speed = 10f;
     public float rotateSpeed = 50f;
@@ -23,6 +24,9 @@ public class PlayerHomingProjectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        target = GameObject.FindGameObjectWithTag("Enemy").transform;
+
         Vector2 direction = (Vector2)target.position - rb.position;
 
         direction.Normalize();

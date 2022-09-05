@@ -4,26 +4,45 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    //Objects to set
+    [Header("Things to set")]
     public Transform origin;
-    public GameObject projectilePrefab;
     public Camera cam;
     public AudioSource aSource;
     public AudioClip attackSound;
-   
+
+    //Weapons
+    [Header("Prefabs to set")]
+    public GameObject projectilePrefab;
+    public GameObject projectileHomingPrefab;
+    public GameObject projectileAxe;
+
+    //Player Weapon Choices
+    public enum weaponSelector
+    {
+        Default, 
+        Homing,
+        Spinning,
+    }
+    [Header("Weapons")]
+    public weaponSelector currentWeapon;
+
     //Variables
     [Header("Modifiers")]
     public int damage = 1;
-    public float fireRate = 15f;
+    public float fireRate = 1f;
     public float bulletForce = 20f;
+    public float projectileSize = 1f;
 
-    //Specials
-    [Header("Specials")]
-    public bool homing = false;
-    public GameObject projectileHomingPrefab;
+
+    public int totalDamage;
 
     //Private
     private float defaultBulletForce = 0.0f;
     private float defaultFireRate = 0.0f;
+    //Base Stats
+    private float baseFireRate = 1f;
+    private int baseDamage = 1;
     private float nextTimeToFire = 0f;
     private GameObject currentProjectile;
 
@@ -33,33 +52,26 @@ public class PlayerShooting : MonoBehaviour
         defaultBulletForce = bulletForce;
         defaultFireRate = fireRate;
 
-        //Set projectile
-        if(homing)
-        {
-            currentProjectile = projectileHomingPrefab;
-        }
-        else
-        {
-            currentProjectile = projectilePrefab;
-        }
-        
+        //Set current weapon to default
+        currentWeapon = weaponSelector.Default;
+         
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //Check if homing is enabled
-        currentProjectile = projectilePrefab;
 
-        if (homing)
-        {
-            currentProjectile = projectileHomingPrefab;
-        }
+        //Check what weapon is currently selected.
+        ProjectileSelector(currentWeapon);
+
+        //Calculate total damage
+        totalDamage = baseDamage + damage;
+
 
         //Shooting
         if (Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
         {
-            nextTimeToFire = Time.time + 1f / fireRate;
+            nextTimeToFire = Time.time + 1f / (baseFireRate + fireRate);
             Shoot();
         }
 
@@ -101,5 +113,33 @@ public class PlayerShooting : MonoBehaviour
     }
     
 
+    public void ProjectileSelector(weaponSelector _currentWeapon)
+    {
+        switch (_currentWeapon)
+        {
+            default:
+                Debug.Log("Couldn't switch weapons, going to default weapon!");
+                currentProjectile = projectileHomingPrefab;
+                break;
 
+            case (weaponSelector.Default):
+                currentProjectile = projectilePrefab;
+                baseFireRate = 2f;
+                baseDamage = 1;
+                break;
+
+            case (weaponSelector.Homing):
+                currentProjectile = projectileHomingPrefab;
+                baseFireRate = 3f;
+                baseDamage = 1;
+                break;
+
+            case (weaponSelector.Spinning):
+                currentProjectile = projectileAxe;
+                baseFireRate = 0.5f;
+                baseDamage = 4;
+                break;
+            
+        }
+    }
 }

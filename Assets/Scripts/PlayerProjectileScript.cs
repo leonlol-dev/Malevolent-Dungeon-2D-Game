@@ -18,4 +18,14 @@ public class PlayerProjectileScript : MonoBehaviour
         Destroy(this.gameObject, destroyTimer);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Destroy projectile if it hits an enemy.
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
+
+
+    }
 }

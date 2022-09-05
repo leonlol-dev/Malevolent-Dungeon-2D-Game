@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Things to set")]
     public Rigidbody2D rb;
-    public float moveSpeed = 5f;
     public SpriteRenderer spriteRenderer;
     public Animator animator;
     public Camera cam;
     public GameObject origin;
 
-    private Vector2 movement;
+    [Header("Modifiers")]
+    public float moveSpeed = 5f;
 
+    //Private
+    private Vector2 movement;
     //Mouse
     private Vector2 mousePos;
 

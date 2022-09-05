@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public EnemyHealth health;
+    
     public GameObject player;
-    public AudioSource aSource;
+    private EnemyHealth health;
+    private AudioSource aSource;
+    private SpriteRenderer spriteRenderer;
+    public GameObject healthBar;
 
     [Header("Sounds")]
     public AudioClip hitSound;
@@ -21,6 +24,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         health = this.gameObject.GetComponent<EnemyHealth>();
         aSource = this.gameObject.GetComponent<AudioSource>();
+        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
         
     }
@@ -34,19 +38,32 @@ public class Enemy : MonoBehaviour
         }    
     }
 
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "PlayerProjectile" )
         {
             Debug.Log("Demon Hit");
             aSource.PlayOneShot(hitSound);
-            health.TakeDamage(player.GetComponent<PlayerShooting>().damage);
+            health.TakeDamage(player.GetComponent<PlayerShooting>().totalDamage);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerProjectile")
+        {
+            Debug.Log("Demon Hit");
+            aSource.PlayOneShot(hitSound);
+            health.TakeDamage(player.GetComponent<PlayerShooting>().totalDamage);
         }
     }
 
     private void Die()
     {
+        spriteRenderer.enabled = false;
+        healthBar.active = false;
         aSource.PlayOneShot(deathSound);
-        Destroy(this.gameObject, 0.25f);
+        Destroy(this.gameObject, 0.55f);
     }
 }
