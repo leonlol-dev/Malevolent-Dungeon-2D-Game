@@ -22,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
+
+    }
+
+    private void FixedUpdate()
+    {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -39,10 +45,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = (mousePos - (Vector2)transform.position).normalized;
         origin.transform.up = dir;
 
-    }
-
-    private void FixedUpdate()
-    {
         //Move rigidbody
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 

@@ -16,6 +16,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject projectileHomingPrefab;
     public GameObject projectileAxe;
+    public GameObject projectileDaggers;
 
     //Player Weapon Choices
     public enum weaponSelector
@@ -23,6 +24,7 @@ public class PlayerShooting : MonoBehaviour
         Default, 
         Homing,
         Spinning,
+        Daggers,
     }
     [Header("Weapons")]
     public weaponSelector currentWeapon;
@@ -32,19 +34,36 @@ public class PlayerShooting : MonoBehaviour
     public int damage = 1;
     public float fireRate = 1f;
     public float bulletForce = 20f;
+    //Not yet implemented
     public float projectileSize = 1f;
+    public float range = 1f;
 
-
+    //Base Stats
+    private int baseDamage = 1;
+    private float baseFireRate = 1f;
+    private float baseBulletForce = 20f;
+    private float baseProjectileSize = 1f;
+    private float baseRange = 1f;
+    
+    
+    //[HideInInspector]
+    //Calculations
     public int totalDamage;
+    public float totalFireRate;
+    public float totalBulletForce;
+    public float totalProjectileSize;
+    public float totalRange; //This is just the time that projectile is on screen for.
+    
+    
 
     //Private
     private float defaultBulletForce = 0.0f;
     private float defaultFireRate = 0.0f;
-    //Base Stats
-    private float baseFireRate = 1f;
-    private int baseDamage = 1;
     private float nextTimeToFire = 0f;
     private GameObject currentProjectile;
+
+   
+   
 
     private void Start()
     {
@@ -53,8 +72,11 @@ public class PlayerShooting : MonoBehaviour
         defaultFireRate = fireRate;
 
         //Set current weapon to default
-        currentWeapon = weaponSelector.Default;
-         
+        //currentWeapon = weaponSelector.Default;
+
+        //Only use this one for debugging.
+        ProjectileSelector(currentWeapon);
+
     }
 
     // Update is called once per frame
@@ -64,18 +86,25 @@ public class PlayerShooting : MonoBehaviour
         //Check what weapon is currently selected.
         ProjectileSelector(currentWeapon);
 
-        //Calculate total damage
-        totalDamage = baseDamage + damage;
-
 
         //Shooting
         if (Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
         {
-            nextTimeToFire = Time.time + 1f / (baseFireRate + fireRate);
+            nextTimeToFire = Time.time + 1f / (totalFireRate);
             Shoot();
         }
 
         
+
+    }
+
+    private void FixedUpdate()
+    {
+        //Calculations
+        totalDamage = baseDamage + damage;
+        totalFireRate = baseFireRate + fireRate;
+        totalBulletForce = baseBulletForce + bulletForce;
+
 
     }
 
@@ -91,27 +120,6 @@ public class PlayerShooting : MonoBehaviour
     }
 
 
-    // Methods to change variables
-    public void SetBulletForce(float newBulletForce)
-    {
-        bulletForce = newBulletForce;
-    }
-
-    public void ResetBulletForce()
-    {
-        bulletForce = defaultBulletForce;
-    }
-
-    public void SetFireRate(float newFireRate)
-    {
-        fireRate = newFireRate;
-    }
-
-    public void ResetFireRate()
-    {
-        fireRate = defaultFireRate;
-    }
-    
 
     public void ProjectileSelector(weaponSelector _currentWeapon)
     {
@@ -138,6 +146,12 @@ public class PlayerShooting : MonoBehaviour
                 currentProjectile = projectileAxe;
                 baseFireRate = 0.5f;
                 baseDamage = 4;
+                break;
+
+            case (weaponSelector.Daggers):
+                currentProjectile = projectileDaggers;
+                baseFireRate = 2.5f;
+                baseDamage = 0;
                 break;
             
         }

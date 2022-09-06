@@ -15,10 +15,12 @@ public class PlayerHomingProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DestroyTimer();
+
         //Grab components.
         target = GameObject.FindGameObjectWithTag("Enemy").transform;
         rb = GetComponent<Rigidbody2D>();
-        DestroyTimer();
+        
     }
 
 
@@ -26,6 +28,8 @@ public class PlayerHomingProjectile : MonoBehaviour
     {
 
         target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        if (target == null) return;
+        
 
         Vector2 direction = (Vector2)target.position - rb.position;
 
