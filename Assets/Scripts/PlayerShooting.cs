@@ -33,26 +33,27 @@ public class PlayerShooting : MonoBehaviour
     [Header("Modifiers")]
     public int damage = 1;
     public float fireRate = 1f;
-    public float bulletForce = 20f;
-    //Not yet implemented
+    public float bulletForce = 1f;
     public float projectileSize = 1f;
-    public float range = 1f;
+
 
     //Base Stats
     private int baseDamage = 1;
     private float baseFireRate = 1f;
     private float baseBulletForce = 20f;
     private float baseProjectileSize = 1f;
-    private float baseRange = 1f;
+    
+
     
     
+    [Header("Total Calculations")]
     //[HideInInspector]
     //Calculations
     public int totalDamage;
     public float totalFireRate;
     public float totalBulletForce;
     public float totalProjectileSize;
-    public float totalRange; //This is just the time that projectile is on screen for.
+
     
     
 
@@ -104,6 +105,7 @@ public class PlayerShooting : MonoBehaviour
         totalDamage = baseDamage + damage;
         totalFireRate = baseFireRate + fireRate;
         totalBulletForce = baseBulletForce + bulletForce;
+        totalProjectileSize = baseProjectileSize + projectileSize;
 
 
     }
@@ -115,8 +117,9 @@ public class PlayerShooting : MonoBehaviour
 
         //Instantiate and apply force to projectile.
         GameObject sword = Instantiate(currentProjectile, origin.position, origin.rotation);
+        sword.transform.localScale = new Vector3(totalProjectileSize, totalProjectileSize, 0);
         Rigidbody2D rb = sword.GetComponent<Rigidbody2D>();
-        rb.AddForce(origin.up * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(origin.up * totalBulletForce, ForceMode2D.Impulse);
     }
 
 
@@ -134,24 +137,32 @@ public class PlayerShooting : MonoBehaviour
                 currentProjectile = projectilePrefab;
                 baseFireRate = 2f;
                 baseDamage = 1;
+                baseBulletForce = 20f;
+                baseProjectileSize = 3f;
                 break;
 
             case (weaponSelector.Homing):
                 currentProjectile = projectileHomingPrefab;
                 baseFireRate = 3f;
                 baseDamage = 1;
+                baseBulletForce = 20f;
+                baseProjectileSize = 3f;
                 break;
 
             case (weaponSelector.Spinning):
                 currentProjectile = projectileAxe;
                 baseFireRate = 0.5f;
                 baseDamage = 4;
+                baseBulletForce = 10f;
+                baseProjectileSize = 5f;
                 break;
 
             case (weaponSelector.Daggers):
                 currentProjectile = projectileDaggers;
                 baseFireRate = 2.5f;
                 baseDamage = 0;
+                baseBulletForce = 20f;
+                baseProjectileSize = 2f;
                 break;
             
         }
