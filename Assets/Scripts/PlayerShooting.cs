@@ -9,7 +9,11 @@ public class PlayerShooting : MonoBehaviour
     public Transform origin;
     public Camera cam;
     public AudioSource aSource;
-    public AudioClip attackSound;
+
+    //Sounds to set
+    [Header("Sounds")]
+    public AudioClip skullSound;
+    public AudioClip swordSound;
 
     //Weapons
     [Header("Prefabs to set")]
@@ -17,6 +21,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject projectileHomingPrefab;
     public GameObject projectileAxe;
     public GameObject projectileDaggers;
+    public GameObject projectileSkull;
 
     //Player Weapon Choices
     public enum weaponSelector
@@ -25,6 +30,7 @@ public class PlayerShooting : MonoBehaviour
         Homing,
         Spinning,
         Daggers,
+        Skull
     }
     [Header("Weapons")]
     public weaponSelector currentWeapon;
@@ -61,6 +67,7 @@ public class PlayerShooting : MonoBehaviour
     private float defaultBulletForce = 0.0f;
     private float defaultFireRate = 0.0f;
     private float nextTimeToFire = 0f;
+    private AudioClip attackSound;
     private GameObject currentProjectile;
 
    
@@ -131,10 +138,16 @@ public class PlayerShooting : MonoBehaviour
             default:
                 Debug.Log("Couldn't switch weapons, going to default weapon!");
                 currentProjectile = projectileHomingPrefab;
+                attackSound = swordSound;
+                baseFireRate = 2f;
+                baseDamage = 1;
+                baseBulletForce = 20f;
+                baseProjectileSize = 3f;
                 break;
 
             case (weaponSelector.Default):
                 currentProjectile = projectilePrefab;
+                attackSound = swordSound;
                 baseFireRate = 2f;
                 baseDamage = 1;
                 baseBulletForce = 20f;
@@ -143,14 +156,16 @@ public class PlayerShooting : MonoBehaviour
 
             case (weaponSelector.Homing):
                 currentProjectile = projectileHomingPrefab;
+                attackSound = swordSound;
                 baseFireRate = 3f;
                 baseDamage = 1;
-                baseBulletForce = 20f;
+                baseBulletForce = 5f;
                 baseProjectileSize = 3f;
                 break;
 
             case (weaponSelector.Spinning):
                 currentProjectile = projectileAxe;
+                attackSound = swordSound;
                 baseFireRate = 0.5f;
                 baseDamage = 4;
                 baseBulletForce = 10f;
@@ -159,12 +174,23 @@ public class PlayerShooting : MonoBehaviour
 
             case (weaponSelector.Daggers):
                 currentProjectile = projectileDaggers;
+                attackSound = swordSound;
                 baseFireRate = 2.5f;
                 baseDamage = 0;
                 baseBulletForce = 20f;
                 baseProjectileSize = 2f;
                 break;
-            
+
+            case (weaponSelector.Skull):
+                currentProjectile = projectileSkull;
+                attackSound = skullSound;
+                baseFireRate = 1f;
+                baseDamage = 4;
+                baseBulletForce = 11f;
+                baseProjectileSize = 1f;
+                break;
+
+
         }
     }
 }

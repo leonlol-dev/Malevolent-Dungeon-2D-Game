@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHomingProjectile : MonoBehaviour
+public class SkullProjectile : MonoBehaviour
 {
+    //This is basically a copy of the homing projectile script but with a different
+    //collider effect.
     private Transform target;
     private Rigidbody2D rb;
     private PlayerShooting shootScript;
 
     public float speed = 10f;
-    public float rotateSpeed = 50f;
+    public float rotateSpeed = 5000f;
     public float destroyTimer = 1f;
     public GameObject player;
 
@@ -17,7 +19,7 @@ public class PlayerHomingProjectile : MonoBehaviour
     void Start()
     {
         //Start the destroy timer.
-        DestroyTimer();
+        //DestroyTimer();
 
         //Grab components.
         target = GameObject.FindGameObjectWithTag("Enemy").transform;
@@ -27,7 +29,7 @@ public class PlayerHomingProjectile : MonoBehaviour
 
         //Set the speed of the homing missiles to the bullet force.
         speed = shootScript.totalBulletForce;
-        
+
     }
 
 
@@ -36,7 +38,7 @@ public class PlayerHomingProjectile : MonoBehaviour
         //Find the target, if there is no target - stop this calculation.
         target = FindClosestEnemy().transform;
         if (target == null) return;
-        
+
         //Find the direction of the target.
         Vector2 direction = (Vector2)target.position - rb.position;
 
@@ -55,13 +57,18 @@ public class PlayerHomingProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit!");
             Destroy(this.gameObject);
         }
 
-        
+
+    }
+
+    private void Explode()
+    {
+
     }
 
     private void DestroyTimer()
@@ -76,7 +83,7 @@ public class PlayerHomingProjectile : MonoBehaviour
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = player.transform.position;
-        foreach (GameObject go in gameObjects)
+        foreach(GameObject go in gameObjects)
         {
             Vector3 diff = go.transform.position - position;
             float currentDistance = diff.sqrMagnitude;
