@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class SpecialAttack : ScriptableObject
 {
-    public abstract void Special(GameObject target);
+  
+    public abstract void Special(GameObject player);
+    public abstract void Return(GameObject player);
 
 }

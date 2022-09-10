@@ -37,10 +37,12 @@ public class PlayerShooting : MonoBehaviour
 
     //Variables
     [Header("Modifiers")]
-    public int damage = 1;
-    public float fireRate = 1f;
-    public float bulletForce = 1f;
-    public float projectileSize = 1f;
+    public int damage;
+    public float fireRate;
+    public float bulletForce;
+    public float projectileSize;
+    //Not yet implemented
+    public float range;
 
 
     //Base Stats
@@ -90,7 +92,6 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         //Check what weapon is currently selected.
         ProjectileSelector(currentWeapon);
 
@@ -139,7 +140,7 @@ public class PlayerShooting : MonoBehaviour
                 Debug.Log("Couldn't switch weapons, going to default weapon!");
                 currentProjectile = projectileHomingPrefab;
                 attackSound = swordSound;
-                baseFireRate = 2f;
+                baseFireRate = 3f;
                 baseDamage = 1;
                 baseBulletForce = 20f;
                 baseProjectileSize = 3f;
@@ -148,46 +149,46 @@ public class PlayerShooting : MonoBehaviour
             case (weaponSelector.Default):
                 currentProjectile = projectilePrefab;
                 attackSound = swordSound;
-                baseFireRate = 2f;
-                baseDamage = 1;
+                baseFireRate = 3f;
+                baseDamage = 2;
                 baseBulletForce = 20f;
-                baseProjectileSize = 3f;
+                baseProjectileSize = 4f;
                 break;
 
             case (weaponSelector.Homing):
                 currentProjectile = projectileHomingPrefab;
                 attackSound = swordSound;
                 baseFireRate = 3f;
-                baseDamage = 1;
+                baseDamage = 2;
                 baseBulletForce = 5f;
-                baseProjectileSize = 3f;
+                baseProjectileSize = 4f;
                 break;
 
             case (weaponSelector.Spinning):
                 currentProjectile = projectileAxe;
                 attackSound = swordSound;
-                baseFireRate = 0.5f;
-                baseDamage = 4;
+                baseFireRate = 1.5f;
+                baseDamage = 5;
                 baseBulletForce = 10f;
-                baseProjectileSize = 5f;
+                baseProjectileSize = 6f;
                 break;
 
             case (weaponSelector.Daggers):
                 currentProjectile = projectileDaggers;
                 attackSound = swordSound;
-                baseFireRate = 2.5f;
-                baseDamage = 0;
+                baseFireRate = 4.5f;
+                baseDamage = 1;
                 baseBulletForce = 20f;
-                baseProjectileSize = 2f;
+                baseProjectileSize = 3f;
                 break;
 
             case (weaponSelector.Skull):
                 currentProjectile = projectileSkull;
                 attackSound = skullSound;
-                baseFireRate = 1f;
-                baseDamage = 4;
-                baseBulletForce = 11f;
-                baseProjectileSize = 1f;
+                baseFireRate = 2f;
+                baseDamage = 3;
+                baseBulletForce = 5f;
+                baseProjectileSize = 2f;
                 break;
 
 

@@ -13,13 +13,16 @@ public class SkullProjectile : MonoBehaviour
     public float speed = 10f;
     public float rotateSpeed = 5000f;
     public float destroyTimer = 1f;
+    public float radius = 1f;
     public GameObject player;
+    public GameObject explosionPrefab;
+
 
     // Start is called before the first frame update
     void Start()
     {
         //Start the destroy timer.
-        //DestroyTimer();
+        DestroyTimer();
 
         //Grab components.
         target = GameObject.FindGameObjectWithTag("Enemy").transform;
@@ -60,7 +63,7 @@ public class SkullProjectile : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit!");
-            Destroy(this.gameObject);
+            Explode();
         }
 
 
@@ -68,6 +71,22 @@ public class SkullProjectile : MonoBehaviour
 
     private void Explode()
     {
+        //Instantiate explosion
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+
+        foreach(Collider2D nearByObject in colliders)
+        {
+            EnemyHealth enemy = nearByObject.GetComponent<EnemyHealth>();
+            if(enemy != null)
+            {
+                enemy.TakeDamage((int)player.GetComponent<PlayerShooting>().totalDamage / 2);
+            }
+        }
+
+        Destroy(this.gameObject);
+
 
     }
 
@@ -95,5 +114,10 @@ public class SkullProjectile : MonoBehaviour
         }
 
         return closest;
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
