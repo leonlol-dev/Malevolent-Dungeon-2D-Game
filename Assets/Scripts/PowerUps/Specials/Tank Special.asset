@@ -15,3 +15,5 @@ MonoBehaviour:
   title: Tank
   description: Player takes 50% less damage and increased 15% movement speed and
     attack speed.
+  cooldown: 10
+  duration: 3

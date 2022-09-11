@@ -6,7 +6,7 @@ using UnityEngine;
 public class TankSpecial : SpecialAttack
 {
     public string title = "Tank Special";
-    public string description = "Player has 100 more health, 50% more attack speed and speed";
+    public string description = "Player has 333 more health, 50% more attack speed and speed";
     public float cooldown = 1f;
     public float duration = 3f;
 
@@ -29,8 +29,8 @@ public class TankSpecial : SpecialAttack
         movementScript = player.GetComponent<PlayerMovement>();
 
         //Health
-        pHealthScript.maxHealth += 100;
-        pHealthScript.RestoreHealth(100);
+        pHealthScript.maxHealth += 333;
+        pHealthScript.RestoreHealth(333);
 
         //Speed
         increasedSpeed = movementScript.totalMoveSpeed * 0.5f;
@@ -48,7 +48,7 @@ public class TankSpecial : SpecialAttack
     public override void Return(GameObject player)
     {
         //Health
-        pHealthScript.maxHealth -= 100;
+        pHealthScript.maxHealth -= 333;
         pHealthScript.RestoreHealth(50);
 
         //Speed

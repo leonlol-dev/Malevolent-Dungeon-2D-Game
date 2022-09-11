@@ -11865,9 +11865,9 @@ GameObject:
   - component: {fileID: 1382356412}
   - component: {fileID: 1382356414}
   - component: {fileID: 1382356408}
+  - component: {fileID: 1382356409}
   - component: {fileID: 1382356411}
   - component: {fileID: 1382356413}
-  - component: {fileID: 1382356409}
   - component: {fileID: 1382356415}
   - component: {fileID: 1382356416}
   m_Layer: 7
@@ -11953,7 +11953,9 @@ MonoBehaviour:
   animator: {fileID: 267851994}
   cam: {fileID: 519420031}
   origin: {fileID: 1904984580}
-  moveSpeed: 5
+  baseMoveSpeed: 5
+  moveSpeed: 0
+  totalMoveSpeed: 0
 --- !u!50 &1382356412
 Rigidbody2D:
   serializedVersion: 4
@@ -12115,8 +12117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1467c7e5fd18744910b59a81e7f56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialAtk: {fileID: 0}
+  specialAtk: {fileID: 11400000, guid: 6078e395ea8e5a74db6e8deeedc4dd02, type: 2}
   cooldown: 0
+  duration: 0
+  canSpecial: 0
 --- !u!114 &1382356416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12124,15 +12128,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382356407}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01273ca6d77519042b66a5d100be27ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 573b45d2de8d499458767f2edf02b263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObjects: []
-  objectToPool: {fileID: 0}
-  amountToPool: 15
-  pooled: 0
 --- !u!1 &1468287932
 GameObject:
   m_ObjectHideFlags: 0
