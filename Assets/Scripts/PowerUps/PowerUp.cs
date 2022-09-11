@@ -33,9 +33,13 @@ public class PowerUp : MonoBehaviour
             //Play the clip.
             powerUpAudio.PlayOneShot(powerUpSounds[Random.Range(0, powerUpSounds.Length)]);
 
+            
+
             rend.enabled = false;
             Destroy(gameObject, 0.75f);
             powerUpEffect.Apply(collision.gameObject);
+
+          
         }
       
     }

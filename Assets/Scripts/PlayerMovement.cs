@@ -10,24 +10,28 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Camera cam;
     public GameObject origin;
+    public float baseMoveSpeed = 5f;
 
     [Header("Modifiers")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 0f;
+
+    [HideInInspector]
+    public float totalMoveSpeed;
 
     //Private
     private Vector2 movement;
     //Mouse
     private Vector2 mousePos;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-      
-
+        CalculateTotal();
     }
 
     private void FixedUpdate()
     {
+        CalculateTotal();
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -46,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         origin.transform.up = dir;
 
         //Move rigidbody
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * totalMoveSpeed * Time.fixedDeltaTime);
 
 
         if (movement.x < 0)
@@ -65,5 +69,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetMovementSpeed(float newMovementSpeed)
     {
         moveSpeed = newMovementSpeed;
+    }
+
+    public void CalculateTotal()
+    {
+        totalMoveSpeed = baseMoveSpeed + moveSpeed;
     }
 }

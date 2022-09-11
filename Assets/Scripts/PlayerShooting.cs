@@ -34,6 +34,7 @@ public class PlayerShooting : MonoBehaviour
     }
     [Header("Weapons")]
     public weaponSelector currentWeapon;
+    private weaponSelector prevWeapon;
 
     //Variables
     [Header("Modifiers")]
@@ -66,34 +67,41 @@ public class PlayerShooting : MonoBehaviour
     
 
     //Private
-    private float defaultBulletForce = 0.0f;
-    private float defaultFireRate = 0.0f;
     private float nextTimeToFire = 0f;
     private AudioClip attackSound;
     private GameObject currentProjectile;
+
 
    
    
 
     private void Start()
     {
-        //Set default attack variables
-        defaultBulletForce = bulletForce;
-        defaultFireRate = fireRate;
-
         //Set current weapon to default
         //currentWeapon = weaponSelector.Default;
 
         //Only use this one for debugging.
         ProjectileSelector(currentWeapon);
 
+        //Calculate base stats + modifiers at the start of the game
+        CalculateTotal();
+
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //Check what weapon is currently selected.
-        ProjectileSelector(currentWeapon);
+
+        if (currentWeapon != prevWeapon)
+        {
+            //Check what weapon is currently selected.
+            ProjectileSelector(currentWeapon);
+
+            prevWeapon = currentWeapon;
+        }
+
+        
+      
 
 
         //Shooting
@@ -109,12 +117,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Calculations
-        totalDamage = baseDamage + damage;
-        totalFireRate = baseFireRate + fireRate;
-        totalBulletForce = baseBulletForce + bulletForce;
-        totalProjectileSize = baseProjectileSize + projectileSize;
-
+        CalculateTotal();
 
     }
 
@@ -193,5 +196,16 @@ public class PlayerShooting : MonoBehaviour
 
 
         }
+
+        
+    }
+    
+    public void CalculateTotal()
+    {
+        //Calculations
+        totalDamage = baseDamage + damage;
+        totalFireRate = baseFireRate + fireRate;
+        totalBulletForce = baseBulletForce + bulletForce;
+        totalProjectileSize = baseProjectileSize + projectileSize;
     }
 }

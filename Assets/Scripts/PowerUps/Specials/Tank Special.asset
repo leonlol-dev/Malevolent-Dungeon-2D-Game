@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Tank Special
   m_EditorClassIdentifier: 
   title: Tank
-  description: 
+  description: Player takes 50% less damage and increased 15% movement speed and
+    attack speed.

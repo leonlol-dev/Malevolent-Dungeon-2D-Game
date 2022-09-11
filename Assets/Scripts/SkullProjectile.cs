@@ -72,7 +72,7 @@ public class SkullProjectile : MonoBehaviour
     private void Explode()
     {
         //Instantiate explosion
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        GameObject particleSystem = Instantiate(explosionPrefab, transform.position, transform.rotation);
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
 
@@ -85,6 +85,7 @@ public class SkullProjectile : MonoBehaviour
             }
         }
 
+        Destroy(particleSystem, 1f);
         Destroy(this.gameObject);
 
 
