@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Player has double attack speed but halved movement speed
   cooldown: 6
   duration: 2.5
-  prefab: {fileID: 0}
+  prefab: {fileID: 6262559579530367750, guid: 8c1f52ae45b6ac045adc4dab9c46cde9, type: 3}
