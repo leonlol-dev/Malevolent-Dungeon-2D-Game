@@ -17,4 +17,3 @@ MonoBehaviour:
     attack speed.
   cooldown: 10
   duration: 3
-  prefab: {fileID: 3309705754341857065, guid: c53693a6431253f4595242127faed552, type: 3}
