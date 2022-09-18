@@ -45,6 +45,8 @@ public class PlayerShooting : MonoBehaviour
     //Not yet implemented
     public float range;
 
+    [Header("Debug")]
+    public int id;
 
     //Base Stats
     private int baseDamage = 1;
@@ -127,7 +129,8 @@ public class PlayerShooting : MonoBehaviour
         aSource.PlayOneShot(attackSound);
 
         //Instantiate and apply force to projectile.
-        GameObject sword = Instantiate(currentProjectile, origin.position, origin.rotation);
+        //GameObject sword = Instantiate(currentProjectile, origin.position, origin.rotation);
+        GameObject sword = Pool.Instance.Activate(id, origin.position, origin.rotation);
         sword.transform.localScale = new Vector3(totalProjectileSize, totalProjectileSize, 0);
         Rigidbody2D rb = sword.GetComponent<Rigidbody2D>();
         rb.AddForce(origin.up * totalBulletForce, ForceMode2D.Impulse);
@@ -150,6 +153,7 @@ public class PlayerShooting : MonoBehaviour
                 break;
 
             case (weaponSelector.Default):
+                id = 0;
                 currentProjectile = projectilePrefab;
                 attackSound = swordSound;
                 baseFireRate = 3f;
@@ -159,6 +163,7 @@ public class PlayerShooting : MonoBehaviour
                 break;
 
             case (weaponSelector.Homing):
+                id = 1;
                 currentProjectile = projectileHomingPrefab;
                 attackSound = swordSound;
                 baseFireRate = 3f;
@@ -168,6 +173,7 @@ public class PlayerShooting : MonoBehaviour
                 break;
 
             case (weaponSelector.Spinning):
+                id = 2;
                 currentProjectile = projectileAxe;
                 attackSound = swordSound;
                 baseFireRate = 1.5f;
@@ -177,6 +183,7 @@ public class PlayerShooting : MonoBehaviour
                 break;
 
             case (weaponSelector.Daggers):
+                id = 3;
                 currentProjectile = projectileDaggers;
                 attackSound = swordSound;
                 baseFireRate = 4.5f;
@@ -186,6 +193,7 @@ public class PlayerShooting : MonoBehaviour
                 break;
 
             case (weaponSelector.Skull):
+                id = 4;
                 currentProjectile = projectileSkull;
                 attackSound = skullSound;
                 baseFireRate = 2f;

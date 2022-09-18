@@ -12,13 +12,13 @@ public class PlayerHomingProjectile : MonoBehaviour
     public float rotateSpeed = 50f;
     public float destroyTimer = 1f;
     public GameObject player;
+    public GameObject impactPrefab;
+    public Transform origin;
 
     // Start is called before the first frame update
     void Start()
-    {
-        //Start the destroy timer.
-        DestroyTimer();
-
+    { 
+        
         //Grab components.
         target = GameObject.FindGameObjectWithTag("Enemy").transform;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -28,6 +28,17 @@ public class PlayerHomingProjectile : MonoBehaviour
         //Set the speed of the homing missiles to the bullet force.
         speed = shootScript.totalBulletForce;
         
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(DestroyTimer(destroyTimer));
+        //Debug.Log("script enabled");
+    }
+
+    private void OnDisable()
+    {
+        //Debug.Log("script disabled");
     }
 
 
@@ -58,15 +69,34 @@ public class PlayerHomingProjectile : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit!");
-            //Destroy(this.gameObject);
+            GameObject impact = Instantiate(impactPrefab, origin.position, origin.rotation);
+            Destroy(impact, 0.33f);
         }
 
         
     }
 
-    private void DestroyTimer()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(this.gameObject, destroyTimer);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy Hit!");
+            GameObject impact = Instantiate(impactPrefab, origin.position, origin.rotation);
+            Destroy(impact, 0.33f);
+        }
+
+    }
+
+    //private void DestroyTimer()
+    //{
+    //    Destroy(this.gameObject, destroyTimer);
+    //}
+
+    IEnumerator DestroyTimer(float _destroyTimer)
+    {
+        yield return new WaitForSeconds(_destroyTimer);
+        Pool.Instance.Deactivate(this.gameObject);
+        Debug.Log("missile deactiaved!");
     }
 
     public GameObject FindClosestEnemy()

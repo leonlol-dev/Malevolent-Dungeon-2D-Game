@@ -53,11 +53,6 @@ public class PlayerSpecialAttack : MonoBehaviour
             Instantiate(currentSpecialPrefab, player.transform.position, Quaternion.identity);
         }
 
-        
-
-        //canSpecial = true;
-
-        //Now change the special.
         currentSpecial = _special;
         currentSpecialPrefab = _special.getPrefab;
         cooldown = _special.getCooldown;
