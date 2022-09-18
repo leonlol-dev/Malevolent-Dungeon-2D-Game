@@ -9,6 +9,7 @@ public class TankSpecial : SpecialAttack
     public string description = "Player has 333 more health, 50% more attack speed and speed";
     public float cooldown = 1f;
     public float duration = 3f;
+    public GameObject prefab;
 
     PlayerHealth pHealthScript;
     PlayerShooting shootingScript;
@@ -19,6 +20,8 @@ public class TankSpecial : SpecialAttack
 
     public override float getCooldown { get { return cooldown; } }
     public override float getDuration { get { return duration; } }
+
+    public override GameObject getPrefab { get { return prefab; } }
 
     //This is what the special does.
     public override void Special(GameObject player)
