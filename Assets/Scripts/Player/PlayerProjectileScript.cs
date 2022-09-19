@@ -9,13 +9,15 @@ public class PlayerProjectileScript : MonoBehaviour
     // Projectile deletes it self after a certain amount of time.
     void Start()
     {
-        DestroyTimer();
+        StartCoroutine(DestroyTimer(destroyTimer));
     }
 
 
-    private void DestroyTimer()
+    IEnumerator DestroyTimer(float _destroyTimer)
     {
-        Destroy(this.gameObject, destroyTimer);
+        yield return new WaitForSeconds(_destroyTimer);
+        Pool.Instance.Deactivate(this.gameObject);
+        Debug.Log("missile deactiaved!");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -23,7 +25,7 @@ public class PlayerProjectileScript : MonoBehaviour
         //Destroy projectile if it hits an enemy.
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(this.gameObject);
+            Pool.Instance.Deactivate(this.gameObject);
         }
 
 

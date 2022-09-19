@@ -14329,7 +14329,7 @@ MonoBehaviour:
   projectileAxe: {fileID: 7301319271781455301, guid: 5ddd2e4b2e8690447a19aebe61abf7bb, type: 3}
   projectileDaggers: {fileID: 7813742578854844458, guid: d09f03452fa5be744a6e52f0b844871f, type: 3}
   projectileSkull: {fileID: 2628143436464753224, guid: 809dbe3d79cbfd847a713623dcbafafd, type: 3}
-  currentWeapon: 1
+  currentWeapon: 4
   damage: 0
   fireRate: 0
   bulletForce: 0
@@ -14746,7 +14746,7 @@ MonoBehaviour:
     Amount: 25
   - Object: {fileID: 7301319271781455301, guid: 5ddd2e4b2e8690447a19aebe61abf7bb, type: 3}
     Amount: 25
-  - Object: {fileID: 1039430655989621782, guid: eef646264d52dfd41886b712298455e5, type: 3}
+  - Object: {fileID: 7813742578854844458, guid: d09f03452fa5be744a6e52f0b844871f, type: 3}
     Amount: 25
   - Object: {fileID: 2628143436464753224, guid: 809dbe3d79cbfd847a713623dcbafafd, type: 3}
     Amount: 25

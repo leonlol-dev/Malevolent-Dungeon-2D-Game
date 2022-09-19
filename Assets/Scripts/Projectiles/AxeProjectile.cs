@@ -16,19 +16,27 @@ public class AxeProjectile : MonoBehaviour
         projectile = this.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
 
-        //Start destroy timer
-        DestroyTimer(destroyTimer);
+        
     }
 
+    void onEnable()
+    {
+        //Start destroy timer
+        StartCoroutine(DestroyTimer(destroyTimer));
+    }
     // Update is called once per frame
     void Update()
     {
+        //Spinning rotation
         rotationSpeed = rotationSpeedMultiplier * Time.deltaTime;
         transform.Rotate(0.0f, 0.0f, -rotationSpeed);
     }
 
-    private void DestroyTimer(float timer)
+    IEnumerator DestroyTimer(float _destroyTimer)
     {
-        Destroy(gameObject, timer);
+        yield return new WaitForSeconds(_destroyTimer);
+        Pool.Instance.Deactivate(this.gameObject);
+        Debug.Log("missile deactiaved!");
     }
+
 }

@@ -32,8 +32,18 @@ public class PlayerHomingProjectile : MonoBehaviour
 
     private void OnEnable()
     {
+        //Start Coroutine for the destroy timer.
         StartCoroutine(DestroyTimer(destroyTimer));
-        //Debug.Log("script enabled");
+
+        //Grab components.
+        target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
+        shootScript = player.GetComponent<PlayerShooting>();
+        rb = GetComponent<Rigidbody2D>();
+
+        //Set the speed of the homing missiles to the bullet force.
+        speed = shootScript.totalBulletForce;
+
     }
 
     private void OnDisable()

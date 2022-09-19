@@ -21,8 +21,6 @@ public class SkullProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Start the destroy timer.
-        DestroyTimer();
 
         //Grab components.
         target = GameObject.FindGameObjectWithTag("Enemy").transform;
@@ -35,6 +33,28 @@ public class SkullProjectile : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        //Start Coroutine for the destroy timer.
+        StartCoroutine(DestroyTimer(destroyTimer));
+
+        //Grab components.
+        if(target=null)
+        {
+            target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        }
+        else
+        {
+            return;
+        }
+        
+        player = GameObject.FindGameObjectWithTag("Player");
+        shootScript = player.GetComponent<PlayerShooting>();
+        rb = GetComponent<Rigidbody2D>();
+
+        //Set the speed of the homing missiles to the bullet force.
+        speed = shootScript.totalBulletForce;
+    }
 
     private void FixedUpdate()
     {
@@ -86,14 +106,16 @@ public class SkullProjectile : MonoBehaviour
         }
 
         Destroy(particleSystem, 1f);
-        Destroy(this.gameObject);
+        Pool.Instance.Deactivate(this.gameObject);
 
 
     }
 
-    private void DestroyTimer()
+    IEnumerator DestroyTimer(float _destroyTimer)
     {
-        Destroy(this.gameObject, destroyTimer);
+        yield return new WaitForSeconds(_destroyTimer);
+        Pool.Instance.Deactivate(this.gameObject);
+        Debug.Log("missile deactiaved!");
     }
 
     public GameObject FindClosestEnemy()

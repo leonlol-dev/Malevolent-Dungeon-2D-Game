@@ -36,21 +36,44 @@ public class DaggersProjectile : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(DestroyTimer(timer));
+
+        player = GameObject.FindWithTag("Player");
+        shootScript = player.GetComponent<PlayerShooting>();
+
+        //Quaternion.Euler(0, 0, 45f)
+        GameObject daggerOne = Instantiate(extraProjectile, leftOrigin.position, leftOrigin.rotation);
+        daggerOne.GetComponent<ExtraDagger>().timer = timer;
+        daggerOne.transform.localScale = new Vector3(shootScript.totalProjectileSize, shootScript.totalProjectileSize, 0);
+        Rigidbody2D rbOne = daggerOne.GetComponent<Rigidbody2D>();
+        rbOne.AddForce(leftOrigin.up * shootScript.totalBulletForce, ForceMode2D.Impulse);
+
+        GameObject daggerTwo = Instantiate(extraProjectile, rightOrigin.position, rightOrigin.rotation);
+        daggerTwo.GetComponent<ExtraDagger>().timer = timer;
+        daggerTwo.transform.localScale = new Vector3(shootScript.totalProjectileSize, shootScript.totalProjectileSize, 0);
+        Rigidbody2D rbTwo = daggerTwo.GetComponent<Rigidbody2D>();
+        rbTwo.AddForce(rightOrigin.up * shootScript.totalBulletForce, ForceMode2D.Impulse);
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit!");
-            Destroy(this.gameObject);
+            Pool.Instance.Deactivate(this.gameObject);
         }
 
 
     }
 
-    private void DestroyTimer(float _timer)
+    IEnumerator DestroyTimer(float _destroyTimer)
     {
-        Destroy(this.gameObject, _timer);
-
+        yield return new WaitForSeconds(_destroyTimer);
+        Pool.Instance.Deactivate(this.gameObject);
+        Debug.Log("missile deactiaved!");
     }
 
 }

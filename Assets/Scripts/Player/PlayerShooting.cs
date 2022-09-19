@@ -53,9 +53,7 @@ public class PlayerShooting : MonoBehaviour
     private float baseFireRate = 1f;
     private float baseBulletForce = 20f;
     private float baseProjectileSize = 1f;
-    
 
-    
     
     [Header("Total Calculations")]
     //[HideInInspector]
