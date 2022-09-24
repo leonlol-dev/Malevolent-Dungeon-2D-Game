@@ -9,6 +9,7 @@ public class PlayerShooting : MonoBehaviour
     public Transform origin;
     public Camera cam;
     public AudioSource aSource;
+    public GameObject player;
 
     //Sounds to set
     [Header("Sounds")]
@@ -23,18 +24,24 @@ public class PlayerShooting : MonoBehaviour
     public GameObject projectileDaggers;
     public GameObject projectileSkull;
 
+    [Header("Current Weapon Configuration")]
     //Player Weapon Choices
-    public enum weaponSelector
-    {
-        Default, 
-        Homing,
-        Spinning,
-        Daggers,
-        Skull
-    }
-    [Header("Weapons")]
-    public weaponSelector currentWeapon;
-    private weaponSelector prevWeapon;
+
+    //public enum weaponSelector
+    //{
+    //    Default, 
+    //    Homing,
+    //    Spinning,
+    //    Daggers,
+    //    Skull
+    //}
+    //[Header("Weapons")]
+    //public weaponSelector currentWeapon;
+    //private weaponSelector prevWeapon;
+
+    public Weapon weapon;
+    public GameObject weaponItemPrefab;
+    public GameObject currentProjectile;
 
     //Variables
     [Header("Modifiers")]
@@ -48,11 +55,20 @@ public class PlayerShooting : MonoBehaviour
     [Header("Debug")]
     public int id;
 
+    //IDS
+    // default = 0
+    // homing = 1
+    // spinning axe = 2
+    // daggers = 3
+    // skull = 4
+
+
     //Base Stats
-    private int baseDamage = 1;
-    private float baseFireRate = 1f;
-    private float baseBulletForce = 20f;
-    private float baseProjectileSize = 1f;
+    public int baseDamage = 1;
+    public float baseFireRate = 1f;
+    public float baseBulletForce = 20f;
+    public float baseProjectileSize = 1f;
+    public float baseRange = 1f;
 
     
     [Header("Total Calculations")]
@@ -62,14 +78,17 @@ public class PlayerShooting : MonoBehaviour
     public float totalFireRate;
     public float totalBulletForce;
     public float totalProjectileSize;
+    public float totalRange;
 
-    
-    
+    [Header("Sounds")]
+    public AudioClip attackSound;
+
+
+   
 
     //Private
     private float nextTimeToFire = 0f;
-    private AudioClip attackSound;
-    private GameObject currentProjectile;
+    
 
 
    
@@ -81,7 +100,8 @@ public class PlayerShooting : MonoBehaviour
         //currentWeapon = weaponSelector.Default;
 
         //Only use this one for debugging.
-        ProjectileSelector(currentWeapon);
+        //ProjectileSelector(currentWeapon);
+        weapon.Equip(player);
 
         //Calculate base stats + modifiers at the start of the game
         CalculateTotal();
@@ -92,13 +112,13 @@ public class PlayerShooting : MonoBehaviour
     private void Update()
     {
 
-        if (currentWeapon != prevWeapon)
-        {
-            //Check what weapon is currently selected.
-            ProjectileSelector(currentWeapon);
+        //if (currentWeapon != prevWeapon)
+        //{
+        //    //Check what weapon is currently selected.
+        //    ProjectileSelector(currentWeapon);
 
-            prevWeapon = currentWeapon;
-        }
+        //    prevWeapon = currentWeapon;
+        //}
 
         
       
@@ -134,77 +154,99 @@ public class PlayerShooting : MonoBehaviour
         rb.AddForce(origin.up * totalBulletForce, ForceMode2D.Impulse);
     }
 
-
-
-    public void ProjectileSelector(weaponSelector _currentWeapon)
+    public void PickUpWeapon(Weapon _weapon)
     {
-        switch (_currentWeapon)
+        if(weapon != null)
         {
-            default:
-                Debug.Log("Couldn't switch weapons, going to default weapon!");
-                currentProjectile = projectileHomingPrefab;
-                attackSound = swordSound;
-                baseFireRate = 3f;
-                baseDamage = 1;
-                baseBulletForce = 20f;
-                baseProjectileSize = 3f;
-                break;
-
-            case (weaponSelector.Default):
-                id = 0;
-                currentProjectile = projectilePrefab;
-                attackSound = swordSound;
-                baseFireRate = 3f;
-                baseDamage = 2;
-                baseBulletForce = 20f;
-                baseProjectileSize = 4f;
-                break;
-
-            case (weaponSelector.Homing):
-                id = 1;
-                currentProjectile = projectileHomingPrefab;
-                attackSound = swordSound;
-                baseFireRate = 3f;
-                baseDamage = 2;
-                baseBulletForce = 5f;
-                baseProjectileSize = 4f;
-                break;
-
-            case (weaponSelector.Spinning):
-                id = 2;
-                currentProjectile = projectileAxe;
-                attackSound = swordSound;
-                baseFireRate = 1.5f;
-                baseDamage = 5;
-                baseBulletForce = 10f;
-                baseProjectileSize = 6f;
-                break;
-
-            case (weaponSelector.Daggers):
-                id = 3;
-                currentProjectile = projectileDaggers;
-                attackSound = swordSound;
-                baseFireRate = 4.5f;
-                baseDamage = 1;
-                baseBulletForce = 20f;
-                baseProjectileSize = 3f;
-                break;
-
-            case (weaponSelector.Skull):
-                id = 4;
-                currentProjectile = projectileSkull;
-                attackSound = skullSound;
-                baseFireRate = 2f;
-                baseDamage = 3;
-                baseBulletForce = 5f;
-                baseProjectileSize = 2f;
-                break;
-
-
+            //Instantiate 
         }
 
-        
+        _weapon.Equip(this.gameObject);
+        //id = _weapon.getId;
+        //weapon = _weapon;
+        //currentProjectile = _weapon.getProjectilePrefab;
+        //weaponItemPrefab = _weapon.getItemPrefab;
+        //attackSound = _weapon.getAttackSound;
+        //baseFireRate = _weapon.getBaseFireRate;
+        //baseDamage = _weapon.getBaseDamage;
+        //baseBulletForce = _weapon.getBaseBulletForce;
+        //baseProjectileSize = _weapon.getBaseProjectileSize;
+        //baseRange = _weapon.getBaseRange;
+
     }
+
+
+    //public void ProjectileSelector(weaponSelector _currentWeapon)
+    //{
+        
+
+    //    switch (_currentWeapon)
+    //    {
+    //        default:
+    //            Debug.Log("Couldn't switch weapons, going to default weapon!");
+    //            currentProjectile = projectileHomingPrefab;
+    //            attackSound = swordSound;
+    //            baseFireRate = 3f;
+    //            baseDamage = 1;
+    //            baseBulletForce = 20f;
+    //            baseProjectileSize = 3f;
+    //            break;
+
+    //        case (weaponSelector.Default):
+    //            id = 0;
+    //            currentProjectile = projectilePrefab;
+    //            attackSound = swordSound;
+    //            baseFireRate = 3f;
+    //            baseDamage = 2;
+    //            baseBulletForce = 20f;
+    //            baseProjectileSize = 4f;
+    //            break;
+
+    //        case (weaponSelector.Homing):
+    //            id = 1;
+    //            currentProjectile = projectileHomingPrefab;
+    //            attackSound = swordSound;
+    //            baseFireRate = 3f;
+    //            baseDamage = 2;
+    //            baseBulletForce = 5f;
+    //            baseProjectileSize = 4f;
+    //            break;
+
+    //        case (weaponSelector.Spinning):
+    //            id = 2;
+    //            currentProjectile = projectileAxe;
+    //            attackSound = swordSound;
+    //            baseFireRate = 1.5f;
+    //            baseDamage = 5;
+    //            baseBulletForce = 10f;
+    //            baseProjectileSize = 6f;
+    //            break;
+
+    //        case (weaponSelector.Daggers):
+    //            id = 3;
+    //            currentProjectile = projectileDaggers;
+    //            attackSound = swordSound;
+    //            baseFireRate = 4.5f;
+    //            baseDamage = 1;
+    //            baseBulletForce = 20f;
+    //            baseProjectileSize = 3f;
+    //            break;
+
+    //        case (weaponSelector.Skull):
+    //            id = 4;
+    //            currentProjectile = projectileSkull;
+    //            attackSound = skullSound;
+    //            baseFireRate = 2f;
+    //            baseDamage = 3;
+    //            baseBulletForce = 5f;
+    //            baseProjectileSize = 2f;
+    //            break;
+
+
+    //    }
+
+        
+    //}
     
     public void CalculateTotal()
     {
@@ -213,5 +255,6 @@ public class PlayerShooting : MonoBehaviour
         totalFireRate = baseFireRate + fireRate;
         totalBulletForce = baseBulletForce + bulletForce;
         totalProjectileSize = baseProjectileSize + projectileSize;
+        totalRange = baseRange + range;
     }
 }

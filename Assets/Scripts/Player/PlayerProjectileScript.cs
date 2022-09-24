@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class PlayerProjectileScript : MonoBehaviour
 {
-    public float destroyTimer = 3f;
+    public float destroyTimer;
+    private GameObject player;
 
     // Projectile deletes it self after a certain amount of time.
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        destroyTimer = player.GetComponent<PlayerShooting>().totalRange;
+        StartCoroutine(DestroyTimer(destroyTimer));
+  
+    }
+
+    private void OnEnable()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        //Destroy Timer is based on the range of the player.
+        destroyTimer = player.GetComponent<PlayerShooting>().totalRange;
+      
         StartCoroutine(DestroyTimer(destroyTimer));
     }
 

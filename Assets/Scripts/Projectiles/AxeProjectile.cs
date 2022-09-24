@@ -11,20 +11,21 @@ public class AxeProjectile : MonoBehaviour
 
     private float rotationSpeed;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         projectile = this.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
+        destroyTimer = player.GetComponent<PlayerShooting>().totalRange;
 
-        
+
     }
 
-    void onEnable()
+    private void OnEnable()
     {
         //Start destroy timer
         StartCoroutine(DestroyTimer(destroyTimer));
     }
-    // Update is called once per frame
+
     void Update()
     {
         //Spinning rotation

@@ -7,56 +7,67 @@ public class PlayerHomingProjectile : MonoBehaviour
     private Transform target;
     private Rigidbody2D rb;
     private PlayerShooting shootScript;
+    private TrailRenderer trailRenderer;
 
     public float speed = 10f;
     public float rotateSpeed = 50f;
     public float destroyTimer = 1f;
     public GameObject player;
     public GameObject impactPrefab;
+    public GameObject trailPrefab;
     public Transform origin;
 
-    // Start is called before the first frame update
-    void Start()
+    private GameObject trail;
+
+    void Awake()
     { 
         
         //Grab components.
         target = GameObject.FindGameObjectWithTag("Enemy").transform;
         player = GameObject.FindGameObjectWithTag("Player");
         shootScript = player.GetComponent<PlayerShooting>();
+        trailRenderer = GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
         //Set the speed of the homing missiles to the bullet force.
         speed = shootScript.totalBulletForce;
+        destroyTimer = shootScript.totalRange;
+
         
+
     }
 
     private void OnEnable()
     {
-        //Start Coroutine for the destroy timer.
-        StartCoroutine(DestroyTimer(destroyTimer));
-
-        //Grab components.
-        target = GameObject.FindGameObjectWithTag("Enemy").transform;
-        player = GameObject.FindGameObjectWithTag("Player");
-        shootScript = player.GetComponent<PlayerShooting>();
-        rb = GetComponent<Rigidbody2D>();
+        //Due to some visual bugs, have to instantiate a trail rather than add it to the projectile object.
+        trail = Instantiate<GameObject>(trailPrefab, transform.position, transform.rotation);
+        trail.transform.parent = this.transform;
 
         //Set the speed of the homing missiles to the bullet force.
         speed = shootScript.totalBulletForce;
+        destroyTimer = shootScript.totalRange;
+
+        //Start Coroutine for the destroy timer.
+        StartCoroutine(DestroyTimer(destroyTimer));
 
     }
 
     private void OnDisable()
     {
-        //Debug.Log("script disabled");
+        //Destroy trail
+        Destroy(trail);
     }
+
 
 
     private void FixedUpdate()
     {
         //Find the target, if there is no target - stop this calculation.
         target = FindClosestEnemy().transform;
-        if (target == null) return;
+        if (target == null)
+        {
+            return;
+        }
         
         //Find the direction of the target.
         Vector2 direction = (Vector2)target.position - rb.position;
@@ -106,7 +117,6 @@ public class PlayerHomingProjectile : MonoBehaviour
     {
         yield return new WaitForSeconds(_destroyTimer);
         Pool.Instance.Deactivate(this.gameObject);
-        Debug.Log("missile deactiaved!");
     }
 
     public GameObject FindClosestEnemy()

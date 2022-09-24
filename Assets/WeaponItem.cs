@@ -2,57 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class SpecialItem : MonoBehaviour
+
+public class WeaponItem : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI textMeshProUGUI;
-    private PlayerSpecialAttack playerSpecial;
+    private PlayerShooting playerShoot;
 
-    public SpecialAttack specialAttack;
+    public Weapon weapon;
     public GameObject text;
-
-
-    
 
     private bool playerInProximity;
     private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         textMeshProUGUI = text.GetComponent<TextMeshProUGUI>();
 
-        //Find player so it stops those annoying null references but they don't actually matter.
-        player = GameObject.FindGameObjectWithTag("Player");
-
         //Set the text
-        textMeshProUGUI.text = (specialAttack.name + "\n" + "Press 'E' to pick up.");
+        textMeshProUGUI.text = (weapon.weaponName + "\n" + "Press 'E' to pick up.");
 
         //Disable text Game Object 
         text.SetActive(false);
 
         //Set player in proximity to false.
         playerInProximity = false;
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerInProximity && playerSpecial.canSpecial)
+        if (Input.GetKeyDown(KeyCode.E) && playerInProximity)
         {
             player.GetComponent<PlayerAudioHandler>().pickUpSound(true);
-            playerSpecial.PickUpSpecial(specialAttack);
+            //player get weapon
+            playerShoot.PickUpWeapon(weapon);
             Destroy(this.gameObject);
         }
 
-        else if (Input.GetKeyDown(KeyCode.E) && !playerSpecial.canSpecial && playerInProximity)
+        else if (Input.GetKeyDown(KeyCode.E) && playerInProximity)
         {
             //Play Reject clip
             player.GetComponent<PlayerAudioHandler>().pickUpSound(false);
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -62,15 +58,15 @@ public class SpecialItem : MonoBehaviour
             playerInProximity = true;
 
             //Retrieve the player special script upon collision. (better performance I think?)
-            playerSpecial = collision.gameObject.GetComponent<PlayerSpecialAttack>();
+            playerShoot = collision.gameObject.GetComponent<PlayerShooting>();
 
             player = collision.gameObject;
 
             //Set the text true.
             text.SetActive(true);
 
-      
-            
+
+
         }
     }
 

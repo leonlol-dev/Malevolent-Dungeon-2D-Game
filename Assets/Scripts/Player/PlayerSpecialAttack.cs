@@ -60,14 +60,6 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     }
 
-    public void DropSpecial()
-    {
-        //Instantiate
-
-        
-            
-    }
-
     IEnumerator SpecialCooldown(float _cooldown)
     {
         yield return new WaitForSeconds(_cooldown);

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cddde3ff0c81f345af90c56cfc340b4, type: 3}
+  m_Name: Normal Sword
+  m_EditorClassIdentifier: 
+  weaponName: Ordinary Sword
+  id: 0
+  fireRate: 3
+  damage: 1
+  bulletForce: 15
+  projectileSize: 3
+  range: 0.15
+  attackSound: {fileID: 8300000, guid: 67176fdba94786b4eb55b547a9364f51, type: 3}
+  projectilePrefab: {fileID: 760333889765989115, guid: 676c616a6a46be54491289d6dccbae7f, type: 3}
+  itemPrefab: {fileID: 2027167141613792564, guid: e0628a6ff78da1148bc54a51b489cc5d, type: 3}

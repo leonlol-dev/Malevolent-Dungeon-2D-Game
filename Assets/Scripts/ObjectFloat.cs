@@ -16,6 +16,7 @@ public class ObjectFloat : MonoBehaviour
     void Start()
     {
         posOffset = transform.position;
+        
     }
 
     // Update is called once per frame

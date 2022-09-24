@@ -52,4 +52,13 @@ public class LoadedSpecial : SpecialAttack
 
 
     }
+
+    public override void Equip(GameObject player)
+    {
+        //i dont like the look of this so im not using it
+        player.GetComponent<PlayerSpecialAttack>().currentSpecial = this;
+        player.GetComponent<PlayerSpecialAttack>().currentSpecialPrefab = getPrefab;
+        player.GetComponent<PlayerSpecialAttack>().cooldown = getCooldown;
+        player.GetComponent<PlayerSpecialAttack>().duration = getDuration;
+    }
 }

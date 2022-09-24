@@ -63,4 +63,12 @@ public class TankSpecial : SpecialAttack
 
 
     }
+
+    public override void Equip(GameObject player)
+    {
+        player.GetComponent<PlayerSpecialAttack>().currentSpecial = this;
+        player.GetComponent<PlayerSpecialAttack>().currentSpecialPrefab = getPrefab;
+        player.GetComponent<PlayerSpecialAttack>().cooldown = getCooldown;
+        player.GetComponent<PlayerSpecialAttack>().duration = getDuration;
+    }
 }
