@@ -115,9 +115,10 @@ GameObject:
   - component: {fileID: 6262559579530367754}
   - component: {fileID: 4321842652028627238}
   - component: {fileID: 3309705754083203184}
+  - component: {fileID: 2121347781}
   m_Layer: 0
   m_Name: Loaded Special
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,6 +205,10 @@ MonoBehaviour:
   degreesPerSecond: 0
   amplitude: 0.25
   frequency: 0.33
+  itemRadius: 1
+  rangeMovement: 0.1
+  timer: 0.55
+  magnitude: 1000
 --- !u!114 &6262559579530367755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialAttack: {fileID: 11400000, guid: 1dd48a0869a2f764fad572dc1c09bfd4, type: 2}
   text: {fileID: 6262559580169885142}
+  playerInProximity: 0
 --- !u!58 &6262559579530367754
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -426,6 +432,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &2121347781
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262559579530367750}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!1 &6262559580169885142
 GameObject:
   m_ObjectHideFlags: 0

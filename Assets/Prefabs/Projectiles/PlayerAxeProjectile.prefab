@@ -148,7 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
   player: {fileID: 0}
-  rotationSpeedMultiplier: 500
+  rotationSpeedMultiplier: 1000
+  destroyTimer: 0.5
 --- !u!1 &8473287104636881105
 GameObject:
   m_ObjectHideFlags: 0

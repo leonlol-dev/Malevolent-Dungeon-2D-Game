@@ -12,8 +12,9 @@ public class WeaponItem : MonoBehaviour
     public Weapon weapon;
     public GameObject text;
 
-    private bool playerInProximity;
+    public bool playerInProximity;
     private GameObject player;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,29 +32,16 @@ public class WeaponItem : MonoBehaviour
         playerInProximity = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && playerInProximity)
-        {
-            player.GetComponent<PlayerAudioHandler>().pickUpSound(true);
-            //player get weapon
-            playerShoot.PickUpWeapon(weapon);
-            Destroy(this.gameObject);
-        }
-
-        else if (Input.GetKeyDown(KeyCode.E) && playerInProximity)
-        {
-            //Play Reject clip
-            player.GetComponent<PlayerAudioHandler>().pickUpSound(false);
-        }
-    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         if (collision.gameObject.tag == "Player")
         {
+
+
             //Player is in proximity
             playerInProximity = true;
 
@@ -68,6 +56,8 @@ public class WeaponItem : MonoBehaviour
 
 
         }
+
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -7,9 +7,12 @@ public class PlayerShooting : MonoBehaviour
     //Objects to set
     [Header("Things to set")]
     public Transform origin;
+    public Transform origin2;
+    public Transform origin3;
     public Camera cam;
     public AudioSource aSource;
     public GameObject player;
+    public float itemRadius;
 
     //Sounds to set
     [Header("Sounds")]
@@ -25,6 +28,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject projectileSkull;
 
     [Header("Current Weapon Configuration")]
+
     //Player Weapon Choices
 
     //public enum weaponSelector
@@ -61,6 +65,7 @@ public class PlayerShooting : MonoBehaviour
     // spinning axe = 2
     // daggers = 3
     // skull = 4
+    // sickle = 5
 
 
     //Base Stats
@@ -88,16 +93,16 @@ public class PlayerShooting : MonoBehaviour
 
     //Private
     private float nextTimeToFire = 0f;
-    
+    private CircleCollider2D circleCollider;
+    public GameObject currentItemHover;
 
 
    
    
 
-    private void Start()
+    private void Awake()
     {
-        //Set current weapon to default
-        //currentWeapon = weaponSelector.Default;
+        circleCollider = GetComponent<CircleCollider2D>();
 
         //Only use this one for debugging.
         //ProjectileSelector(currentWeapon);
@@ -112,18 +117,6 @@ public class PlayerShooting : MonoBehaviour
     private void Update()
     {
 
-        //if (currentWeapon != prevWeapon)
-        //{
-        //    //Check what weapon is currently selected.
-        //    ProjectileSelector(currentWeapon);
-
-        //    prevWeapon = currentWeapon;
-        //}
-
-        
-      
-
-
         //Shooting
         if (Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
         {
@@ -131,7 +124,36 @@ public class PlayerShooting : MonoBehaviour
             Shoot();
         }
 
-        
+
+
+        //===================================================================================
+        //Any further updates to this script make sure to do it above these if statements.
+        //This checks if the player is hovering over an item and will return back to the top
+        //if there isn't.
+        //===================================================================================
+
+        if (currentItemHover == null)
+        {
+            return;
+        }
+
+        //Picking Up a Weapon and destroys the world item.
+        if (Input.GetKeyDown(KeyCode.E) && currentItemHover.GetComponent<WeaponItem>().playerInProximity)
+        {
+            player.GetComponent<PlayerAudioHandler>().pickUpSound(true);
+            PickUpWeapon(currentItemHover.GetComponent<WeaponItem>().weapon);
+            Destroy(currentItemHover);
+        }
+
+        //If cannot pick up weapon then plays a reject sound.
+        else if (Input.GetKeyDown(KeyCode.E) && currentItemHover.GetComponent<WeaponItem>().playerInProximity)
+        {
+
+            //Play Reject clip
+            player.GetComponent<PlayerAudioHandler>().pickUpSound(false);
+        }
+
+
 
     }
 
@@ -146,32 +168,27 @@ public class PlayerShooting : MonoBehaviour
         //Play attack sound.
         aSource.PlayOneShot(attackSound);
 
-        //Instantiate and apply force to projectile.
-        //GameObject sword = Instantiate(currentProjectile, origin.position, origin.rotation);
-        GameObject sword = Pool.Instance.Activate(id, origin.position, origin.rotation);
-        sword.transform.localScale = new Vector3(totalProjectileSize, totalProjectileSize, 0);
-        Rigidbody2D rb = sword.GetComponent<Rigidbody2D>();
-        rb.AddForce(origin.up * totalBulletForce, ForceMode2D.Impulse);
+        //Get projectile from the object pool and apply force to projectile.
+        ShootProjectile(origin);
+
+        // If the current weapon id is dagger, shoot multiple.
+        if(id == 3)
+        {
+            ShootProjectile(origin2);
+            ShootProjectile(origin3);
+        }
+        
     }
 
     public void PickUpWeapon(Weapon _weapon)
     {
         if(weapon != null)
         {
-            //Instantiate 
+ 
+            Instantiate(weaponItemPrefab, origin.transform.position, transform.rotation);
         }
 
         _weapon.Equip(this.gameObject);
-        //id = _weapon.getId;
-        //weapon = _weapon;
-        //currentProjectile = _weapon.getProjectilePrefab;
-        //weaponItemPrefab = _weapon.getItemPrefab;
-        //attackSound = _weapon.getAttackSound;
-        //baseFireRate = _weapon.getBaseFireRate;
-        //baseDamage = _weapon.getBaseDamage;
-        //baseBulletForce = _weapon.getBaseBulletForce;
-        //baseProjectileSize = _weapon.getBaseProjectileSize;
-        //baseRange = _weapon.getBaseRange;
 
     }
 
@@ -256,5 +273,22 @@ public class PlayerShooting : MonoBehaviour
         totalBulletForce = baseBulletForce + bulletForce;
         totalProjectileSize = baseProjectileSize + projectileSize;
         totalRange = baseRange + range;
+    }
+
+    public void ShootProjectile(Transform _origin)
+    {
+        GameObject sword = Pool.Instance.Activate(id, _origin.position, _origin.rotation);
+        sword.transform.localScale = new Vector3(totalProjectileSize, totalProjectileSize, 0);
+        Rigidbody2D rb = sword.GetComponent<Rigidbody2D>();
+        rb.AddForce(_origin.up * totalBulletForce, ForceMode2D.Impulse);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Item" && collision.gameObject.GetComponent("WeaponItem") as WeaponItem != null)
+        {
+            currentItemHover = collision.gameObject;
+        }
     }
 }

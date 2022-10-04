@@ -22,6 +22,9 @@ public class AxeProjectile : MonoBehaviour
 
     private void OnEnable()
     {
+        //Get Destroy timer
+        destroyTimer = player.GetComponent<PlayerShooting>().totalRange;
+
         //Start destroy timer
         StartCoroutine(DestroyTimer(destroyTimer));
     }

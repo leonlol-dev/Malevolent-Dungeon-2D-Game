@@ -14,7 +14,7 @@ public class SpecialItem : MonoBehaviour
 
     
 
-    private bool playerInProximity;
+    public bool playerInProximity;
     private GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -40,18 +40,18 @@ public class SpecialItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerInProximity && playerSpecial.canSpecial)
-        {
-            player.GetComponent<PlayerAudioHandler>().pickUpSound(true);
-            playerSpecial.PickUpSpecial(specialAttack);
-            Destroy(this.gameObject);
-        }
+        //if (Input.GetKeyDown(KeyCode.E) && playerInProximity && playerSpecial.canSpecial)
+        //{
+        //    player.GetComponent<PlayerAudioHandler>().pickUpSound(true);
+        //    playerSpecial.PickUpSpecial(specialAttack);
+        //    Destroy(this.gameObject);
+        //}
 
-        else if (Input.GetKeyDown(KeyCode.E) && !playerSpecial.canSpecial && playerInProximity)
-        {
-            //Play Reject clip
-            player.GetComponent<PlayerAudioHandler>().pickUpSound(false);
-        }
+        //else if (Input.GetKeyDown(KeyCode.E) && !playerSpecial.canSpecial && playerInProximity)
+        //{
+        //    //Play Reject clip
+        //    player.GetComponent<PlayerAudioHandler>().pickUpSound(false);
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

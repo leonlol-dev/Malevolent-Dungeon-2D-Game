@@ -14,6 +14,7 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     //Private
     private GameObject player;
+    public GameObject currentItemHover;
 
     private void Start()
     {
@@ -36,6 +37,31 @@ public class PlayerSpecialAttack : MonoBehaviour
             
 
         }
+
+
+        //===================================================================================
+        //Any further updates to this script make sure to do it above these if statements.
+        //This checks if the player is hovering over an item and will return back to the top
+        //if there isn't.
+        //===================================================================================
+
+        if (currentItemHover == null)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.E) && currentItemHover.GetComponent<SpecialItem>().playerInProximity && canSpecial)
+        {
+            player.GetComponent<PlayerAudioHandler>().pickUpSound(true);
+            PickUpSpecial(currentItemHover.GetComponent<SpecialItem>().specialAttack);
+            Destroy(currentItemHover);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.E) && !canSpecial && currentItemHover.GetComponent<SpecialItem>().playerInProximity)
+        {
+            //Play Reject clip
+            player.GetComponent<PlayerAudioHandler>().pickUpSound(false);
+        }
+
     }
 
     public void PickUpSpecial(SpecialAttack _special)
@@ -49,8 +75,8 @@ public class PlayerSpecialAttack : MonoBehaviour
                currentSpecial.Return(player);
             }
             
-            //Drop current special in game world
-            Instantiate(currentSpecialPrefab, player.transform.position, Quaternion.identity);
+            //Drop current special in game world (the player.transform.GetChild should be the origin.)
+            Instantiate(currentSpecialPrefab, player.transform.GetChild(0).transform.position, Quaternion.identity);
         }
 
         currentSpecial = _special;
@@ -78,6 +104,15 @@ public class PlayerSpecialAttack : MonoBehaviour
 
     }
 
- 
-    
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Item" && collision.gameObject.GetComponent("SpecialItem") as SpecialItem != null)
+        {
+            currentItemHover = collision.gameObject;
+        }
+    }
+
+
 }

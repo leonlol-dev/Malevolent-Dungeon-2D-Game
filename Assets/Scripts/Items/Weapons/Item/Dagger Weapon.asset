@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cddde3ff0c81f345af90c56cfc340b4, type: 3}
-  m_Name: Spinning Axe
+  m_Name: Dagger Weapon
   m_EditorClassIdentifier: 
-  weaponName: Spinning Axe
-  id: 2
-  fireRate: 1.5
-  damage: 5
-  bulletForce: 25
-  projectileSize: 6
-  range: 0.5
+  weaponName: Daggers
+  id: 3
+  fireRate: 2
+  damage: 2
+  bulletForce: 15
+  projectileSize: 2
+  range: 0.45
   attackSound: {fileID: 8300000, guid: 67176fdba94786b4eb55b547a9364f51, type: 3}
-  projectilePrefab: {fileID: 7301319271781455301, guid: 5ddd2e4b2e8690447a19aebe61abf7bb, type: 3}
-  itemPrefab: {fileID: 5728964190055120439, guid: 9684a288944602c4f8874225097c826d, type: 3}
+  projectilePrefab: {fileID: 7813742578854844458, guid: d09f03452fa5be744a6e52f0b844871f, type: 3}
+  itemPrefab: {fileID: 5958837960849419951, guid: 4047f49f0f58c3c44a09ee5b334cf800, type: 3}

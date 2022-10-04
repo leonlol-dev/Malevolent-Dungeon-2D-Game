@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cddde3ff0c81f345af90c56cfc340b4, type: 3}
-  m_Name: Spinning Axe
+  m_Name: Death Sickle
   m_EditorClassIdentifier: 
-  weaponName: Spinning Axe
-  id: 2
-  fireRate: 1.5
+  weaponName: Death Sickle
+  id: 5
+  fireRate: 2
   damage: 5
-  bulletForce: 25
-  projectileSize: 6
-  range: 0.5
+  bulletForce: 11
+  projectileSize: 2
+  range: 3
   attackSound: {fileID: 8300000, guid: 67176fdba94786b4eb55b547a9364f51, type: 3}
-  projectilePrefab: {fileID: 7301319271781455301, guid: 5ddd2e4b2e8690447a19aebe61abf7bb, type: 3}
-  itemPrefab: {fileID: 5728964190055120439, guid: 9684a288944602c4f8874225097c826d, type: 3}
+  projectilePrefab: {fileID: 1001345765788012010, guid: 3643f7c5f9bab5743bb0b1e3cb2c5e42, type: 3}
+  itemPrefab: {fileID: 931715319233484952, guid: ac70c2590f00f384cb3e533c9afd6edc, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2591885050653911272}
   - component: {fileID: 2591885050653911274}
   - component: {fileID: 2591885050653911275}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,9 +151,10 @@ GameObject:
   - component: {fileID: 5686754983415747609}
   - component: {fileID: 6412917650993964367}
   - component: {fileID: 2591885051021061686}
-  m_Layer: 0
+  - component: {fileID: 2353950464621392857}
+  m_Layer: 8
   m_Name: Homing Sword
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,6 +241,10 @@ MonoBehaviour:
   degreesPerSecond: 0
   amplitude: 0.25
   frequency: 0.33
+  itemRadius: 1
+  rangeMovement: 2
+  timer: 0.55
+  magnitude: 1000
 --- !u!58 &2591885051021061685
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -255,7 +260,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.08
 --- !u!82 &5686754983415747609
 AudioSource:
   m_ObjectHideFlags: 0
@@ -462,6 +467,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 9295458b9bec30a4e8956090f5289c97, type: 2}
   text: {fileID: 2591885050653911273}
+  timeSincePickup: 0
+--- !u!50 &2353950464621392857
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591885051021061689}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2591885051991630737
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +501,7 @@ GameObject:
   - component: {fileID: 2591885051991630701}
   - component: {fileID: 2591885051991630738}
   - component: {fileID: 2591885051991630739}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

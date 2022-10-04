@@ -35,6 +35,7 @@ public class NormalSword : Weapon
         player.GetComponent<PlayerShooting>().baseRange = range;
         player.GetComponent<PlayerShooting>().attackSound = attackSound;
         player.GetComponent<PlayerShooting>().projectilePrefab = projectilePrefab;
+        player.GetComponent<PlayerShooting>().weaponItemPrefab = itemPrefab;
 
 
     }

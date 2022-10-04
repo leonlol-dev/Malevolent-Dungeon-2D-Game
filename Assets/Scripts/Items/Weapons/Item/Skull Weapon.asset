@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cddde3ff0c81f345af90c56cfc340b4, type: 3}
+  m_Name: Skull Weapon
+  m_EditorClassIdentifier: 
+  weaponName: Chasing Skull
+  id: 4
+  fireRate: 2
+  damage: 3
+  bulletForce: 5
+  projectileSize: 2
+  range: 2
+  attackSound: {fileID: 8300000, guid: a793b44a772c0a14384213604867bf1a, type: 3}
+  projectilePrefab: {fileID: 2628143436464753224, guid: 809dbe3d79cbfd847a713623dcbafafd, type: 3}
+  itemPrefab: {fileID: 2088743673749796954, guid: 434b32bcd37e79e4aa54c7a0e8e51374, type: 3}
