@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerAudioHandler : MonoBehaviour
 {
-    private AudioSource audioSource;
+    //This script is used because its better to have the audio behaviour on the player rather than the item to stop sounds from stopping mid way through
+    //due to the item destroying it self.
 
+    [Header("Sounds")]
     public AudioClip accept;
     public AudioClip reject;
-    // Start is called before the first frame update
+    public AudioClip[] coinCollect;
+
+    //Private
+    private AudioSource audioSource;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();  
@@ -26,5 +32,10 @@ public class PlayerAudioHandler : MonoBehaviour
         }
         
         
+    }
+
+    public void coinCollectSound()
+    {
+        audioSource.PlayOneShot(coinCollect[Random.Range(0,coinCollect.Length)]);
     }
 }
