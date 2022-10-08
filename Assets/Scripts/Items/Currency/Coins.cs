@@ -11,6 +11,7 @@ public class Coins : MonoBehaviour
 
     private bool hasTarget;
     private Vector3 targetPos;
+    private Vector3 prevPos;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,7 +29,24 @@ public class Coins : MonoBehaviour
             Vector2 targetDirection = (targetPos - transform.position).normalized;
             rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * moveSpeed;
         }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            prevPos = transform.position;
+            rb.AddForce((transform.up + Random.insideUnitSphere.normalized) * 5f, ForceMode2D.Impulse);
+            rb.gravityScale = 2.14f;
+            
+        }
+
+        if(transform.position.y < prevPos.y)
+        {
+
+            rb.gravityScale = 0f;
+
+        }
     }
+
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,7 +56,17 @@ public class Coins : MonoBehaviour
             moneyScript.ReceiveGold(coinAmount);
             Destroy(this.gameObject);
         }
+
+        if (collision.tag == "Boundary")
+        {
+            Vector2 pos = transform.position;
+            transform.position = pos;
+        }
+
+
     }
+
+
 
     public void SetTarget(Vector3 _target)
     {
