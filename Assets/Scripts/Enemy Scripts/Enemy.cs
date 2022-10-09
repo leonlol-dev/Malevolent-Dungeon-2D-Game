@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    
     public GameObject player;
-    private EnemyHealth health;
-    private AudioSource aSource;
-    private SpriteRenderer spriteRenderer;
     public GameObject healthBar;
 
     [Header("Sounds")]
     public AudioClip hitSound;
     public AudioClip deathSound;
 
+   
+
     //Private
     private bool died;
+    private EnemyHealth health;
+    private AudioSource aSource;
+    private BoxCollider2D bCollider;
+    private SpriteRenderer spriteRenderer;
+    private EnemyLoot enemyLoot;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,8 @@ public class Enemy : MonoBehaviour
         health = this.gameObject.GetComponent<EnemyHealth>();
         aSource = this.gameObject.GetComponent<AudioSource>();
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        enemyLoot = this.gameObject.GetComponent<EnemyLoot>();
+        bCollider = this.gameObject.GetComponent<BoxCollider2D>();
 
         
     }
@@ -63,7 +68,9 @@ public class Enemy : MonoBehaviour
     {
         spriteRenderer.enabled = false;
         healthBar.active = false;
+        bCollider.enabled = false;
+        enemyLoot.DropLoot();
         aSource.PlayOneShot(deathSound);
-        Destroy(this.gameObject, 0.55f);
+        Destroy(this.gameObject, 3f);
     }
 }

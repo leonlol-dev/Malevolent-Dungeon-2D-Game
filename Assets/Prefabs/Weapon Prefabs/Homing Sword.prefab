@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2591885050653911272}
   - component: {fileID: 2591885050653911274}
   - component: {fileID: 2591885050653911275}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 6412917650993964367}
   - component: {fileID: 2591885051021061686}
   - component: {fileID: 2353950464621392857}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Homing Sword
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.17
 --- !u!82 &5686754983415747609
 AudioSource:
   m_ObjectHideFlags: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 9295458b9bec30a4e8956090f5289c97, type: 2}
   text: {fileID: 2591885050653911273}
-  timeSincePickup: 0
+  playerInProximity: 0
 --- !u!50 &2353950464621392857
 Rigidbody2D:
   serializedVersion: 4
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 2591885051991630701}
   - component: {fileID: 2591885051991630738}
   - component: {fileID: 2591885051991630739}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

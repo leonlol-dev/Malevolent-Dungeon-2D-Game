@@ -24,5 +24,6 @@ public class EnemyHealth : MonoBehaviour
         enemyHealth.SetHealth(currentHealth);
     }
 
+
 }
 

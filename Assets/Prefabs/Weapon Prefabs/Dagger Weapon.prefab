@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5958837959344038907}
   - component: {fileID: 5958837959344038660}
   - component: {fileID: 5958837959344038661}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 3005432111845369305}
   - component: {fileID: 5958837960849419936}
   - component: {fileID: 6945767159561664088}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Dagger Weapon
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.17
 --- !u!82 &4585046717738914959
 AudioSource:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: e2e65957ee7873e4592204b66eba1b20, type: 2}
   text: {fileID: 5958837961219156095}
-  timeSincePickup: 0
+  playerInProximity: 0
 --- !u!50 &6945767159561664088
 Rigidbody2D:
   serializedVersion: 4
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 5958837961219156094}
   - component: {fileID: 5958837961219156092}
   - component: {fileID: 5958837961219156093}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

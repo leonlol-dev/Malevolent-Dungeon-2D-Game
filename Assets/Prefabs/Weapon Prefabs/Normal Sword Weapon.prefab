@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2027167140978729056}
   - component: {fileID: 2027167140978729119}
   - component: {fileID: 2027167140978729118}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2027167141243235301}
   - component: {fileID: 2027167141243235303}
   - component: {fileID: 2027167141243235302}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 7432780924156732994}
   - component: {fileID: 2027167141613792571}
   - component: {fileID: 2282140378344511377}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Normal Sword Weapon
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.17
 --- !u!82 &8156759969225971476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a8b96355be5393f4880c3f3b30d647a6, type: 2}
   text: {fileID: 2027167141243235300}
-  timeSincePickup: 0
+  playerInProximity: 0
 --- !u!50 &2282140378344511377
 Rigidbody2D:
   serializedVersion: 4

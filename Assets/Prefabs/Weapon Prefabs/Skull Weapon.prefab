@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2088743672310478094}
   - component: {fileID: 2088743672310478321}
   - component: {fileID: 2088743672310478320}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2088743673111854731}
   - component: {fileID: 2088743673111854729}
   - component: {fileID: 2088743673111854728}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 7492809270218584876}
   - component: {fileID: 2088743673749796949}
   - component: {fileID: 6923667562173560311}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Skull Weapon
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.17
 --- !u!82 &8210032925108830842
 AudioSource:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: d4ec763f2161b994fbd3033df21b3a01, type: 2}
   text: {fileID: 2088743673111854730}
-  timeSincePickup: 0
+  playerInProximity: 0
 --- !u!50 &6923667562173560311
 Rigidbody2D:
   serializedVersion: 4

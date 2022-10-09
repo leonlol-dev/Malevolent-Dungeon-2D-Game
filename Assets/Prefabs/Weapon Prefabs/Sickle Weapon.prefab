@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 931715317727090124}
   - component: {fileID: 931715317727089971}
   - component: {fileID: 931715317727089970}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 931715318528466505}
   - component: {fileID: 931715318528466507}
   - component: {fileID: 931715318528466506}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 8640548675692598254}
   - component: {fileID: 931715319233484951}
   - component: {fileID: 1109052597651939901}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Sickle Weapon
   m_TagString: Item
   m_Icon: {fileID: 0}

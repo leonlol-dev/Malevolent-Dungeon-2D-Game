@@ -17,7 +17,6 @@ public class ObjectFloat : MonoBehaviour
     Vector2 posOffset = new Vector2();
     Vector2 tempPos = new Vector2();
 
-    private bool itemStaying = false;
     private bool floating = true;
 
     private GameObject player;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5728964188818207587}
   - component: {fileID: 5728964188818207644}
   - component: {fileID: 5728964188818207645}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 3784753815827887425}
   - component: {fileID: 5728964190055120440}
   - component: {fileID: 2120780226}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Spinning Axe Weapon
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.17
 --- !u!82 &2491069677745718295
 AudioSource:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 1316bc564b60cac45835366ed863c3cf, type: 2}
   text: {fileID: 5728964190693325031}
-  timeSincePickup: 0
+  playerInProximity: 0
 --- !u!50 &2120780226
 Rigidbody2D:
   serializedVersion: 4
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 5728964190693325030}
   - component: {fileID: 5728964190693325028}
   - component: {fileID: 5728964190693325029}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
