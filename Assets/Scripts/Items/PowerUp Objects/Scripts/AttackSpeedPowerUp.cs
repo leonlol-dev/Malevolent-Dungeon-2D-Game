@@ -6,10 +6,13 @@ using UnityEngine;
 public class AttackSpeedPowerUp : PowerUpEffect
 {
     public float amount;
+    public int cost;
     public override void Apply(GameObject target)
     {
         target.GetComponent<PlayerShooting>().fireRate += amount;
 
 
     }
+
+    public override int getCost { get { return cost; } }
 }

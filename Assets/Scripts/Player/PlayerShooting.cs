@@ -284,11 +284,12 @@ public class PlayerShooting : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Item" && collision.gameObject.GetComponent("WeaponItem") as WeaponItem != null)
-        {
-            currentItemHover = collision.gameObject;
-        }
-    }
+    //This is in it's own game object now
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Item" && collision.gameObject.GetComponent("WeaponItem") as WeaponItem != null)
+    //    {
+    //        currentItemHover = collision.gameObject;
+    //    }
+    //}
 }

@@ -36,6 +36,10 @@ public class PlayerAudioHandler : MonoBehaviour
 
     public void coinCollectSound()
     {
-        audioSource.PlayOneShot(coinCollect[Random.Range(0,coinCollect.Length)]);
+        if(!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(coinCollect[Random.Range(0, coinCollect.Length)]);
+        }
+        
     }
 }

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Death Sickle
   m_EditorClassIdentifier: 
   weaponName: Death Sickle
+  weaponDescription: Summons a spinning scythe that pierces enemies.
+  goldCost: 30000
   id: 5
+  cost: 5000
   fireRate: 2
   damage: 5
   bulletForce: 11

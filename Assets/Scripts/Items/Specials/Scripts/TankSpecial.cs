@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = ("Special/Tank"))]
 public class TankSpecial : SpecialAttack
 {
-    public string title = "Tank Special";
-    public string description = "Player has 333 more health, 50% more attack speed and speed";
+    public int cost;
     public float cooldown = 1f;
     public float duration = 3f;
     public GameObject prefab;
@@ -71,4 +70,6 @@ public class TankSpecial : SpecialAttack
         player.GetComponent<PlayerSpecialAttack>().cooldown = getCooldown;
         player.GetComponent<PlayerSpecialAttack>().duration = getDuration;
     }
+
+    public override int getCost { get { return cost; } }
 }

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Spinning Axe
   m_EditorClassIdentifier: 
   weaponName: Spinning Axe
+  weaponDescription: 'Launch a spinning axe '
+  goldCost: 7550
   id: 2
+  cost: 1525
   fireRate: 1.5
   damage: 5
   bulletForce: 25

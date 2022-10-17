@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     private void Die()
     {
         spriteRenderer.enabled = false;

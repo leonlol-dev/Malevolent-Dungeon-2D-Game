@@ -6,6 +6,7 @@ using UnityEngine;
 public class NormalSword : Weapon
 {
     public int id = 0;
+    public int cost;
     public float fireRate;
     public int damage;
     public float bulletForce;
@@ -16,6 +17,7 @@ public class NormalSword : Weapon
     public GameObject itemPrefab;
 
     public override int getId { get { return id; } }
+    public override int getCost { get { return cost; } }
     public override float getBaseFireRate { get { return fireRate; } }
     public override int getBaseDamage { get { return damage; } }
     public override float getBaseBulletForce { get { return bulletForce; } }

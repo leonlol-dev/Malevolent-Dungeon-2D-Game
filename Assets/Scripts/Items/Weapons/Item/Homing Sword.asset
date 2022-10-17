@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Homing Sword
   m_EditorClassIdentifier: 
   weaponName: Homing Sword
+  weaponDescription: Fire a sword that seeks enemies.
+  goldCost: 25000
   id: 1
+  cost: 3250
   fireRate: 3
   damage: 1
   bulletForce: 5

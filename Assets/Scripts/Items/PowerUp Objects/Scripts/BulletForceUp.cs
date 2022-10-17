@@ -5,9 +5,11 @@ using UnityEngine;
 public class BulletForceUp : PowerUpEffect
 {
     public float amount;
-
+    public int cost;
     public override void Apply(GameObject target)
     {
         target.GetComponent<PlayerShooting>().bulletForce += amount;
     }
+
+    public override int getCost { get { return cost; } }
 }

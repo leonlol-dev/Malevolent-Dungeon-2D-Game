@@ -6,6 +6,7 @@ public class PowerUp : MonoBehaviour
 {
     public PowerUpEffect powerUpEffect;
     public AudioClip[] powerUpSounds;
+    public int cost;
 
     private SpriteRenderer rend;
     private AudioSource powerUpAudio;
@@ -43,4 +44,5 @@ public class PowerUp : MonoBehaviour
         }
       
     }
+
 }

@@ -8,6 +8,7 @@ TagManager:
   - PlayerProjectile
   - Item
   - Boundary
+  - Shop
   layers:
   - Default
   - TransparentFX

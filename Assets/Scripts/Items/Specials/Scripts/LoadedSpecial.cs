@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = ("Special/Loaded"))]
 public class LoadedSpecial : SpecialAttack
 {
-    public string title = "Loaded Special";
-    public string description = "Player has double attack speed but halved movement speed";
+
+    public int cost;
     public float cooldown = 6f;
     public float duration = 2.5f;
     public GameObject prefab;
@@ -61,4 +61,6 @@ public class LoadedSpecial : SpecialAttack
         player.GetComponent<PlayerSpecialAttack>().cooldown = getCooldown;
         player.GetComponent<PlayerSpecialAttack>().duration = getDuration;
     }
+
+    public override int getCost { get { return cost; } }
 }

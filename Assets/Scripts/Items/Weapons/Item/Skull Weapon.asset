@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Skull Weapon
   m_EditorClassIdentifier: 
   weaponName: Chasing Skull
+  weaponDescription: Fires a skull that chases the enemy and explodes
+  goldCost: 27500
   id: 4
+  cost: 2700
   fireRate: 2
   damage: 3
   bulletForce: 5

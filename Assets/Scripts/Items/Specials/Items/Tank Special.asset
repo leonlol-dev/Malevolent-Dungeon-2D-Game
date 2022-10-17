@@ -15,6 +15,7 @@ MonoBehaviour:
   title: Tank
   description: Player takes 50% less damage and increased 15% movement speed and
     attack speed.
+  cost: 150
   cooldown: 10
   duration: 3
   prefab: {fileID: 3309705754341857065, guid: c53693a6431253f4595242127faed552, type: 3}
