@@ -5,7 +5,10 @@ Malevolent Dungeon is a 2D Shoot'em up game inspired by Realm of The Mad God and
 ## Specification
 - Different Weapons
 - Tons of Upgrades
+- Consumables
 - Special Abilities
 - Object Pooling
 - Merchant (Sells items to the player)
 - Dynamic UI
+
+
