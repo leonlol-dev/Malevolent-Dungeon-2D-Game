@@ -86,9 +86,7 @@ public class EnemyLoot : MonoBehaviour
         //If the loot is a coin play the animation.
         if (_loot.GetComponent<Coins>() != null)
         {
-            Debug.Log("coin animation start");
             _loot.GetComponent<Coins>().canAnimate = true;
-
 
         }
     }

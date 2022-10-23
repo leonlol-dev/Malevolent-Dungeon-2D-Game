@@ -74,6 +74,7 @@ public class ObjectFloat : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Mathf.PI, 10);
             Debug.DrawRay(transform.position, newDirection, Color.red);
             //transform.rotation = Quaternion.LookRotation(newDirection); 
+
             // (This section works as expected) script to move gameobject away from player.
             transform.position = Vector3.MoveTowards(transform.position, collision.transform.position, -1 * rangeMovement * Time.deltaTime);
             posOffset = transform.position;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Ordinary Sword
   weaponDescription: 'Shoots one sword. '
-  goldCost: 0
+  goldCost: 1000
   id: 0
   cost: 100
   fireRate: 3

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3309705754341857061}
   - component: {fileID: 1373854682}
   - component: {fileID: 1585695282}
+  - component: {fileID: 1607699290860435455}
   m_Layer: 0
   m_Name: Tank Special
   m_TagString: Item
@@ -251,6 +252,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!50 &1607699290860435455
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3309705754341857065}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3309705754977669625
 GameObject:
   m_ObjectHideFlags: 0

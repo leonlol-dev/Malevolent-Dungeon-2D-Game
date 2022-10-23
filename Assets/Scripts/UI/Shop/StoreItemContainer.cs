@@ -28,11 +28,15 @@ public class StoreItemContainer : MonoBehaviour
     public TextMeshProUGUI itemDescription;
     public TextMeshProUGUI itemGold;
 
+    
+
     //Private
     private WeaponItem weaponPrefab;
     private SpecialItem specialAttackPrefab;
     private PowerUp powerUpPrefab;
     private GameObject player;
+    private GameObject shopKeepersTrigger;
+    private int itemCost;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +62,7 @@ public class StoreItemContainer : MonoBehaviour
         
     }
 
+    //Select which type the item is and set the display variables (logo, text, sprite, etc).
     public void itemTypeSelector(itemType _type)
     {
         switch (_type)
@@ -72,6 +77,7 @@ public class StoreItemContainer : MonoBehaviour
                 itemName.text = weaponPrefab.weapon.name;
                 itemDescription.text = weaponPrefab.weapon.weaponDescription;
                 itemGold.text = weaponPrefab.weapon.goldCost.ToString();
+                itemCost = weaponPrefab.weapon.goldCost;
                 ErrorCheck(_type, weaponPrefab);
                 break;
 
@@ -81,12 +87,13 @@ public class StoreItemContainer : MonoBehaviour
                 itemName.text = specialAttackPrefab.specialAttack.title;
                 itemDescription.text = specialAttackPrefab.specialAttack.description;
                 itemGold.text = specialAttackPrefab.specialAttack.goldCost.ToString();
+                itemCost = specialAttackPrefab.specialAttack.goldCost;
                 ErrorCheck(_type, specialAttackPrefab);
                 break;
 
             case itemType.PowerUp:
                 //powerUp = item.GetComponent <PowerUp>();
-                //ErrorCheck(_type, powerUp);
+                ErrorCheck(_type, powerUpPrefab);
                 break;
 
             case itemType.Health:
@@ -94,10 +101,59 @@ public class StoreItemContainer : MonoBehaviour
         }
     }
 
+    public void PlayerBuy(itemType _type)
+    {
+        //Get player's currency script to access player's money.
+        PlayerCurrency pGold = player.GetComponent<PlayerCurrency>();
+
+        if (pGold.gold >= itemCost)
+        {
+            switch (_type)
+            {
+                default:
+                    Debug.Log("Failed to buy item.");
+                    break;
+
+                case itemType.Weapon:
+                    pGold.gold -= itemCost;
+                    PlayerShooting pShootScript = player.GetComponent<PlayerShooting>();
+                    pShootScript.PickUpWeapon(weaponPrefab.weapon);
+                    break;
+
+                case itemType.Special:
+                    pGold.gold -= itemCost;
+                    PlayerSpecialAttack pSpecialScript = player.GetComponent<PlayerSpecialAttack>();
+                    pSpecialScript.PickUpSpecial(specialAttackPrefab.specialAttack);
+                    break;
+
+                case itemType.PowerUp:
+                    //powerUp = item.GetComponent <PowerUp>();
+                    //ErrorCheck(_type, powerUp);
+                    break;
+
+                case itemType.Health:
+                    break;
+            }
+        }
+
+        else
+        {
+            Debug.Log("You cannot afford this.");
+
+        }
+    }
+
+    public void OnButtonPress()
+    {
+        PlayerBuy(type);
+    }
 
 
+    public void Reject()
+    {
+        PlayerAudioHandler playerAudio = player.GetComponent<PlayerAudioHandler>();
 
-
+    }
 
 
 

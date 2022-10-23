@@ -58,6 +58,7 @@ public class PlayerShooting : MonoBehaviour
 
     [Header("Debug")]
     public int id;
+    public bool canFire;
 
     //IDS
     // default = 0
@@ -111,6 +112,9 @@ public class PlayerShooting : MonoBehaviour
         //Calculate base stats + modifiers at the start of the game
         CalculateTotal();
 
+        //Player can fire when instantiated into the world.
+        canFire = true;
+
     }
 
     // Update is called once per frame
@@ -118,7 +122,7 @@ public class PlayerShooting : MonoBehaviour
     {
 
         //Shooting
-        if (Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
+        if (canFire && Input.GetButton("Fire1") & Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / (totalFireRate);
             Shoot();
