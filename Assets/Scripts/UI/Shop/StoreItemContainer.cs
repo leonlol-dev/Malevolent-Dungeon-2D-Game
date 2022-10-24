@@ -27,6 +27,7 @@ public class StoreItemContainer : MonoBehaviour
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDescription;
     public TextMeshProUGUI itemGold;
+    private Button button;
 
     
 
@@ -37,12 +38,19 @@ public class StoreItemContainer : MonoBehaviour
     private GameObject player;
     private GameObject shopKeepersTrigger;
     private int itemCost;
+    private bool bought;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        //Set bought to false, if player wants to buy this item, this needs to be set to false.
+        bought = false;
 
+        //Find components
+        player = GameObject.FindWithTag("Player");
+        button = GetComponent<Button>();
+
+        //Random item selection
         item = items[Random.Range(0, items.Length)];
 
         itemTypeSelector(type);
@@ -106,7 +114,8 @@ public class StoreItemContainer : MonoBehaviour
         //Get player's currency script to access player's money.
         PlayerCurrency pGold = player.GetComponent<PlayerCurrency>();
 
-        if (pGold.gold >= itemCost)
+        //If player's gold is more than the item cost AND if the item hasn't been bought. 
+        if (pGold.gold >= itemCost && bought == false)
         {
             switch (_type)
             {
@@ -134,13 +143,24 @@ public class StoreItemContainer : MonoBehaviour
                 case itemType.Health:
                     break;
             }
+
+            //Set colour of button to dark grey to signify it's been bought
+            bought = true;
+
+        }
+
+        else if(bought == true)
+        {
+            Debug.Log("You cannot buy this again.");
+
         }
 
         else
         {
             Debug.Log("You cannot afford this.");
-
         }
+
+
     }
 
     public void OnButtonPress()

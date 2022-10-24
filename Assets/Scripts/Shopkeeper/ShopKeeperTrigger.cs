@@ -11,7 +11,6 @@ public class ShopKeeperTrigger : MonoBehaviour
 
     private GameObject player;
     private bool playerInProximity;
-    private bool shopOpen;
     private bool playerText;
     private bool textActive = true;
     // Start is called before the first frame update
@@ -20,7 +19,7 @@ public class ShopKeeperTrigger : MonoBehaviour
         ShopUI = GameObject.FindWithTag("Shop");
         ShopUI.SetActive(false);
         text.SetActive(false);
-        shopOpen = false;
+
     }
 
     private void Update()

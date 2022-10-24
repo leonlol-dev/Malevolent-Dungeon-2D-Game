@@ -11,6 +11,7 @@ public class PlayerAudioHandler : MonoBehaviour
     public AudioClip accept;
     public AudioClip reject;
     public AudioClip[] coinCollect;
+    public AudioClip[] potionUse;
 
     //Private
     private AudioSource audioSource;
@@ -30,16 +31,16 @@ public class PlayerAudioHandler : MonoBehaviour
         {
             audioSource.PlayOneShot(reject);
         }
-        
-        
+
     }
 
     public void coinCollectSound()
     {
-        if(!audioSource.isPlaying)
-        {
-            audioSource.PlayOneShot(coinCollect[Random.Range(0, coinCollect.Length)]);
-        }
-        
+        audioSource.PlayOneShot(coinCollect[Random.Range(0, coinCollect.Length)]);
+    }
+
+    public void potionConsumeSound()
+    {
+        audioSource.PlayOneShot(potionUse[Random.Range(0, potionUse.Length)]);
     }
 }
