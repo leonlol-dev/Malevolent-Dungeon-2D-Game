@@ -44,4 +44,13 @@ public class PlayerProjectileScript : MonoBehaviour
 
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Destroy projectile if it hits an enemy.
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Pool.Instance.Deactivate(this.gameObject);
+        }
+    }
 }
