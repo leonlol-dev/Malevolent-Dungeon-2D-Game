@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7ab59636c7f8045b51a4229adfe398, type: 3}
   m_Name: Loaded Special
   m_EditorClassIdentifier: 
-  title: Loaded Special
+  title: Berserker Mushroom
   description: Player has double attack speed but halved movement speed
   goldCost: 5555
   cost: 250

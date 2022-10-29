@@ -12,6 +12,7 @@ public class PlayerAudioHandler : MonoBehaviour
     public AudioClip reject;
     public AudioClip[] coinCollect;
     public AudioClip[] potionUse;
+    public AudioClip[] powerUp;
 
     //Private
     private AudioSource audioSource;
@@ -42,5 +43,10 @@ public class PlayerAudioHandler : MonoBehaviour
     public void potionConsumeSound()
     {
         audioSource.PlayOneShot(potionUse[Random.Range(0, potionUse.Length)]);
+    }
+
+    public void powerUpSound()
+    {
+        audioSource.PlayOneShot(powerUp[Random.Range(0, powerUp.Length)]);
     }
 }

@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924db86105e17804ab16e8aa9c3168e5, type: 3}
   m_Name: Minor Health Buff
   m_EditorClassIdentifier: 
+  title: Max Health+
+  description: Increase max health
   amount: 5
+  cost: 1500

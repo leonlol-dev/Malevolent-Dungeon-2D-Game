@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1061e314c1058f4db4a099bd98c7a92, type: 3}
   m_Name: Minor Damage Up
   m_EditorClassIdentifier: 
+  title: Damage Up+
+  description: Increase damage.
   amount: 2
+  cost: 5555

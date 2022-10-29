@@ -35,6 +35,7 @@ public class StoreItemContainer : MonoBehaviour
     private WeaponItem weaponPrefab;
     private SpecialItem specialAttackPrefab;
     private PowerUp powerUpPrefab;
+    private HealthPotion potionPrefab;
     private GameObject player;
     private GameObject shopKeepersTrigger;
     private int itemCost;
@@ -61,13 +62,7 @@ public class StoreItemContainer : MonoBehaviour
     private void Awake()
     {
         //Set new shop items everytime a new instance of the shop keeper items
-        item = items[Random.Range(0, items.Length)];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        RandomiseShop();
     }
 
     //Select which type the item is and set the display variables (logo, text, sprite, etc).
@@ -100,11 +95,23 @@ public class StoreItemContainer : MonoBehaviour
                 break;
 
             case itemType.PowerUp:
-                //powerUp = item.GetComponent <PowerUp>();
+                powerUpPrefab = item.GetComponent<PowerUp>();
+                itemIcon.sprite = powerUpPrefab.GetComponent<SpriteRenderer>().sprite;
+                itemName.text = powerUpPrefab.powerUpEffect.title;
+                itemDescription.text = powerUpPrefab.powerUpEffect.description;
+                itemGold.text = powerUpPrefab.powerUpEffect.getCost.ToString();
+                itemCost = powerUpPrefab.powerUpEffect.getCost;
                 ErrorCheck(_type, powerUpPrefab);
                 break;
 
             case itemType.Health:
+                potionPrefab = item.GetComponent<HealthPotion>();
+                itemIcon.sprite = potionPrefab.GetComponent<SpriteRenderer>().sprite;
+                itemName.text = potionPrefab.gameObject.name;
+                itemDescription.text = "Heal you by " + potionPrefab.health.ToString() + "HP";
+                itemGold.text = potionPrefab.goldCost.ToString();
+                itemCost = potionPrefab.goldCost;
+                ErrorCheck(_type, potionPrefab);
                 break;
         }
     }
@@ -117,6 +124,9 @@ public class StoreItemContainer : MonoBehaviour
         //If player's gold is more than the item cost AND if the item hasn't been bought. 
         if (pGold.gold >= itemCost && bought == false)
         {
+            //Take away the player's gold
+            pGold.gold -= itemCost;
+
             switch (_type)
             {
                 default:
@@ -124,28 +134,36 @@ public class StoreItemContainer : MonoBehaviour
                     break;
 
                 case itemType.Weapon:
-                    pGold.gold -= itemCost;
                     PlayerShooting pShootScript = player.GetComponent<PlayerShooting>();
                     pShootScript.PickUpWeapon(weaponPrefab.weapon);
+                    bought = true;
                     break;
 
                 case itemType.Special:
-                    pGold.gold -= itemCost;
                     PlayerSpecialAttack pSpecialScript = player.GetComponent<PlayerSpecialAttack>();
                     pSpecialScript.PickUpSpecial(specialAttackPrefab.specialAttack);
+                    bought = true;
                     break;
 
                 case itemType.PowerUp:
-                    //powerUp = item.GetComponent <PowerUp>();
-                    //ErrorCheck(_type, powerUp);
+                    powerUpPrefab.BuyPowerUp(player);
+                    bought = true;
                     break;
 
                 case itemType.Health:
+                    if (player.GetComponent<PlayerHealth>().currentHealth != player.GetComponent<PlayerHealth>().maxHealth)
+                    {
+                        potionPrefab.BuyHeal(player);
+                        bought = true;
+                    }
                     break;
             }
 
-            //Set colour of button to dark grey to signify it's been bought
-            bought = true;
+            if(bought == true)
+            {
+                //Set colour of button to dark grey to signify it's been bought
+                button.interactable = false;
+            }
 
         }
 
@@ -175,7 +193,11 @@ public class StoreItemContainer : MonoBehaviour
 
     }
 
-
+    //When the player finds a new shopkeeper change the items.
+    public void RandomiseShop()
+    {
+        item = items[Random.Range(0, items.Length)];
+    }
 
 
 
@@ -213,6 +235,14 @@ public class StoreItemContainer : MonoBehaviour
         if(_powerUp == null)
         {
             Debug.Log("Failed to initialise power up, check if you have the right item type.");
+        }
+    }
+
+    public void ErrorCheck(itemType _type, HealthPotion _potion)
+    {
+        if(_potion == null)
+        {
+            Debug.Log("Failed to initalise health potion, check if you have the right item type.");
         }
     }
 

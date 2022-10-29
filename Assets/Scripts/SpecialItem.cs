@@ -26,7 +26,7 @@ public class SpecialItem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //Set the text
-        textMeshProUGUI.text = (specialAttack.name + "\n" + "Press 'E' to pick up.");
+        textMeshProUGUI.text = (specialAttack.title + "\n" + "Press 'E' to pick up.");
 
         //Disable text Game Object 
         text.SetActive(false);

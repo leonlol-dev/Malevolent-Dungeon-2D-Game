@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0a2b47b95422242aa99322c82131ec, type: 3}
   m_Name: Minor Speed Up
   m_EditorClassIdentifier: 
+  title: Speed Up+
+  description: Increase speed
   amount: 0.25
+  cost: 0

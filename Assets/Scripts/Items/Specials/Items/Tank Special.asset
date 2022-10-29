@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Tank Special
   m_EditorClassIdentifier: 
   title: Tank
-  description: Player takes 50% less damage and increased 15% movement speed and
-    attack speed.
+  description: Take less damage, run and attack faster for a small duration.
   goldCost: 5555
   cost: 150
   cooldown: 10

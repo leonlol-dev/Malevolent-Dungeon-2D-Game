@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44034946d70b1a478f52371519fcb34, type: 3}
   m_Name: Minor Bullet Force Up
   m_EditorClassIdentifier: 
+  title: Bullet Force +
+  description: Increase bullet force
   amount: 1
+  cost: 2500

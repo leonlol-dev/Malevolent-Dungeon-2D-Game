@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99d354015ce55f42b8e53763e6d50d6, type: 3}
   m_Name: Minor ProjectileSize Up
   m_EditorClassIdentifier: 
+  title: Projectile Size+
+  description: Increase projectile size
   amount: 1
+  cost: 0

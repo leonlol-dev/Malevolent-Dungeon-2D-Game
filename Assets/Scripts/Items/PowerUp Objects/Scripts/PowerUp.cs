@@ -45,4 +45,11 @@ public class PowerUp : MonoBehaviour
       
     }
 
+    public void BuyPowerUp(GameObject _player)
+    {
+        //Play the clip.
+        _player.GetComponent<PlayerAudioHandler>().powerUpSound();
+        powerUpEffect.Apply(_player.gameObject);
+    }
+
 }
