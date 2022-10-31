@@ -11,4 +11,6 @@ Malevolent Dungeon is a 2D Shoot'em up game inspired by Realm of The Mad God and
 - Merchant (Sells items to the player)
 - Dynamic UI
 
+## Stacks
+- A* Pathfinding by Aron Granberg (https://arongranberg.com/astar/front)
 
