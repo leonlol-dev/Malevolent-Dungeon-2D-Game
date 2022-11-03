@@ -14,6 +14,10 @@ public class PlayerAudioHandler : MonoBehaviour
     public AudioClip[] potionUse;
     public AudioClip[] powerUp;
 
+    [Header("Volume")]
+    public float defaultVolume = 0.5f;
+    public float decreasedVolume = 0.1f;
+
     //Private
     private AudioSource audioSource;
 
@@ -47,6 +51,18 @@ public class PlayerAudioHandler : MonoBehaviour
 
     public void powerUpSound()
     {
-        audioSource.PlayOneShot(powerUp[Random.Range(0, powerUp.Length)]);
+        // If audio stacks reduce the overall volume to reduce hurting the player's ears 
+        // if they manage to collect a bunch of coins at once.
+
+        if (audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(powerUp[Random.Range(0, powerUp.Length)], decreasedVolume);
+        }
+        else
+        {
+            audioSource.PlayOneShot(powerUp[Random.Range(0, powerUp.Length)], defaultVolume);
+        }
+        
+        
     }
 }

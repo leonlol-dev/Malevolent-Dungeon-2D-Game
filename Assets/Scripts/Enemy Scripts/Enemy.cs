@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
    
 
     //Private
-    private bool died;
+    [HideInInspector]public bool died;
     private EnemyHealth health;
     private AudioSource aSource;
     private BoxCollider2D bCollider;
