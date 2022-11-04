@@ -1,6 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/* 
+ * ALL ITEM IDS
+ * 1 - STARTING SWORD
+ * 2 - HOMING SWORD
+ * 3 - AXE
+ * 4 - DAGGERS
+ * 5 - FLYING SKULL
+ * 6 - DEATH SICKLE
+ * 7 - EXCALIBUR
+ *
+*/
+
+
 [System.Serializable]
 public class PooledObject
 {
@@ -64,3 +77,4 @@ public class Pool : MonoBehaviour
         obj.SetActive(false);
     }
 }
+

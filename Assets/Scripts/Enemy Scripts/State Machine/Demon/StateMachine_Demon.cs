@@ -90,6 +90,8 @@ public class StateMachine_Demon : MonoBehaviour
         //enemy death function and the scripts will be used universally for other enemies.
         if(enemyScript.died)
         {
+            //Spawns projectiles on death.
+            attackScript.SpawnProjectiles(attackScript.numberOfProjectiles);
             attackScript.canFire = false;
         }
     }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cddde3ff0c81f345af90c56cfc340b4, type: 3}
+  m_Name: Excalibur
+  m_EditorClassIdentifier: 
+  weaponName: 
+  weaponDescription: 
+  goldCost: 0
+  id: 0
+  cost: 0
+  fireRate: 0
+  damage: 0
+  bulletForce: 0
+  projectileSize: 0
+  range: 0
+  attackSound: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  itemPrefab: {fileID: 0}

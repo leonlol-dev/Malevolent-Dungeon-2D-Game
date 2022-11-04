@@ -5,12 +5,18 @@ using UnityEngine;
 public class EnemyRadialAttack : MonoBehaviour
 {
     public bool canFire;
+
+    [Header("Projectile Prefab")]
+    public GameObject projectile;
+
+    [Header("Projectile Variables")]
     public float fireRate = 1f;
+    public float projectileLifetime = 0.55f;
     public float radius = 5f;
     public float moveSpeed = 5f;
     public int numberOfProjectiles = 1;
-    public GameObject projectile;
 
+    //Private
     private float nextTimeToFire = 0f;
     private Vector2 startPoint;
     
@@ -25,14 +31,14 @@ public class EnemyRadialAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time >= nextTimeToFire && canFire == true)
+        if (Time.time >= nextTimeToFire && canFire == true)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
             SpawnProjectiles(numberOfProjectiles);
         }
     }
 
-    void SpawnProjectiles(int _numberOfProjectiles)
+    public void SpawnProjectiles(int _numberOfProjectiles)
     {
         float angleStep = 360f / _numberOfProjectiles;
         float angle = 0f;
@@ -50,6 +56,7 @@ public class EnemyRadialAttack : MonoBehaviour
             var proj = Instantiate(projectile, transform.position, Quaternion.Euler(0,0, -rotation));
             
             proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
+            proj.GetComponent<EnemyProjectile>().lifeTime = projectileLifetime;
       
 
             angle += angleStep;
