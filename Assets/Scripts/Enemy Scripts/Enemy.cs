@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject player;
+    //Not sure if to make this script the master script for all enemy endeavours but I'm not sure.
+
+    [Header("Assign Game Objects")]
     public GameObject healthBar;
+    public EnemyRadialAttack attackScript;
 
     [Header("Sounds")]
     public AudioClip hitSound;
     public AudioClip deathSound;
+
 
    
 
@@ -20,6 +24,7 @@ public class Enemy : MonoBehaviour
     private BoxCollider2D bCollider;
     private SpriteRenderer spriteRenderer;
     private EnemyLoot enemyLoot;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()

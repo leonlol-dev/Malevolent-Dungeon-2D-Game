@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DemonChase : DemonBaseState
 {
+    bool left, right;
+
     //Just sets the destination setter to player.
     public override void Start(StateMachine_Demon demon)
     {
@@ -17,12 +19,14 @@ public class DemonChase : DemonBaseState
 
     public override void UpdateState(StateMachine_Demon demon)
     {
-
+        
     }
 
     public override void FixedUpdateState(StateMachine_Demon demon)
     {
         demon.dSetter.target = demon.player.transform;
+
+
     }
 
     public override void OnTriggerEnter(StateMachine_Demon demon, Collider2D collider)
@@ -32,6 +36,6 @@ public class DemonChase : DemonBaseState
 
     public override void LeaveState(StateMachine_Demon demon)
     {
-
+        demon.dSetter.target = demon.transform;
     }
 }

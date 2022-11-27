@@ -12,6 +12,7 @@ public class StateMachine_Demon : MonoBehaviour
     public float timeBeforeMoving = 1f;
     public float sightRange = 10f;
     public float attackRange = 5f;
+    public float enemyRange = 0.2f;
     
     //States
     public DemonWanderPath wanderState = new DemonWanderPath();
@@ -21,21 +22,29 @@ public class StateMachine_Demon : MonoBehaviour
 
     [SerializeField] private DemonBaseState currentState;
 
+    [Header("Game Objects to set")]
+
     [Header("Animation")]
     public Animator animator;
 
     [Header("Attack")]
     public GameObject attackObject;
 
+    [Header("Target Transform")]
+    public Transform target;
+    
+
     //Pseudo Private (states need to access these).
     [HideInInspector] public GameObject player;
     [HideInInspector] public AIDestinationSetter dSetter;
     [HideInInspector] public AIPath path;
     [HideInInspector] public EnemyRadialAttack attackScript;
+    public bool enemyNearby;
 
     //Private
     private bool playerInSightRange;
     private bool playerInAttackRange;
+    
     private Enemy enemyScript;
     
 
@@ -72,28 +81,23 @@ public class StateMachine_Demon : MonoBehaviour
         //1. Check the ranges
         playerInAttackRange = Physics2D.OverlapCircle(transform.position, attackRange, LayerMask.GetMask("Player"));
         playerInSightRange = Physics2D.OverlapCircle(transform.position, sightRange, LayerMask.GetMask("Player"));
-
+    
 
         //2. Check if the player is in sight range, and not in attack range.
         if(playerInSightRange && !playerInAttackRange)
         {
+            Debug.Log("Entering Chase State");
             SwitchState(chaseState);
         }
 
         //3. Check is player is in attack range.
         if(playerInAttackRange)
         {
+            Debug.Log("Entering Attack State");
             SwitchState(attackState);
         }
 
-        //Check if the demon has died to disable the attack because it's not in the 
-        //enemy death function and the scripts will be used universally for other enemies.
-        if(enemyScript.died)
-        {
-            //Spawns projectiles on death.
-            attackScript.SpawnProjectiles(attackScript.numberOfProjectiles);
-            attackScript.canFire = false;
-        }
+ 
     }
 
     public void SwitchState(DemonBaseState state)
@@ -102,12 +106,6 @@ public class StateMachine_Demon : MonoBehaviour
         currentState.LeaveState(this);
         currentState = state;
         state.EnterState(this);
-    }
-    
-    //States can't access coroutines because they are not monobehaviour class so it's handled here.
-    public void StartChildCoroutine(IEnumerator _coroutine)
-    {
-        StartCoroutine(_coroutine);
     }
 
 
@@ -118,6 +116,19 @@ public class StateMachine_Demon : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, enemyRange);
 
+    }
+
+    //States can't access these functions because they are not monobehaviour class so it's handled here.
+    public void StartChildCoroutine(IEnumerator _coroutine)
+    {
+        StartCoroutine(_coroutine);
+    }
+
+    public void DestroyObject(GameObject _obj)
+    {
+        Destroy(_obj);
     }
 }

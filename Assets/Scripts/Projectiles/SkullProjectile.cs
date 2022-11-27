@@ -16,6 +16,7 @@ public class SkullProjectile : MonoBehaviour
     public float radius = 1f;
     public GameObject player;
     public GameObject explosionPrefab;
+    public SpriteRenderer spriteRenderer;
 
 
     // Start is called before the first frame update
@@ -58,6 +59,8 @@ public class SkullProjectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+        FlipSprite();
+
         //Find the target, if there is no target - stop this calculation.
         target = FindClosestEnemy().transform;
         if (target == null) return;
@@ -87,6 +90,15 @@ public class SkullProjectile : MonoBehaviour
         }
 
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy Hit!");
+            Explode();
+        }
     }
 
     private void Explode()
@@ -142,5 +154,18 @@ public class SkullProjectile : MonoBehaviour
     public void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    private void FlipSprite()
+    {
+        if(rb.velocity.x >= 0.01f)
+        {
+            spriteRenderer.flipY = true;
+        }
+
+        else if(rb.velocity.y <= 0.01f)
+        {
+            spriteRenderer.flipY = false;
+        }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyRadialAttack : MonoBehaviour
@@ -10,6 +8,7 @@ public class EnemyRadialAttack : MonoBehaviour
     public GameObject projectile;
 
     [Header("Projectile Variables")]
+    public int damage = 1;
     public float fireRate = 1f;
     public float projectileLifetime = 0.55f;
     public float radius = 5f;
@@ -19,12 +18,13 @@ public class EnemyRadialAttack : MonoBehaviour
     //Private
     private float nextTimeToFire = 0f;
     private Vector2 startPoint;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
         //canFire = false;
+        projectile.GetComponent<EnemyProjectile>().damage = damage;
 
     }
 
@@ -38,6 +38,7 @@ public class EnemyRadialAttack : MonoBehaviour
         }
     }
 
+
     public void SpawnProjectiles(int _numberOfProjectiles)
     {
         float angleStep = 360f / _numberOfProjectiles;
@@ -49,15 +50,15 @@ public class EnemyRadialAttack : MonoBehaviour
             float projectileDirYposiiton = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
 
             Vector2 projectileVector = new Vector2(projectileDirXposition, projectileDirYposiiton);
-            Vector2 projectileMoveDirection = (projectileVector - new Vector2(transform.position.x, transform.position.y)).normalized * moveSpeed; 
+            Vector2 projectileMoveDirection = (projectileVector - new Vector2(transform.position.x, transform.position.y)).normalized * moveSpeed;
 
             //holy shit i figured this out on my own, fuck quaternions.
             float rotation = Mathf.Atan2(projectileDirXposition, projectileDirYposiiton) * Mathf.Rad2Deg;
-            var proj = Instantiate(projectile, transform.position, Quaternion.Euler(0,0, -rotation));
-            
+            var proj = Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, -rotation));
+
             proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
             proj.GetComponent<EnemyProjectile>().lifeTime = projectileLifetime;
-      
+
 
             angle += angleStep;
         }

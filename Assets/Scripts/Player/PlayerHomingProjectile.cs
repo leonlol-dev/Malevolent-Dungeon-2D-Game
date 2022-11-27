@@ -66,7 +66,10 @@ public class PlayerHomingProjectile : MonoBehaviour
         target = FindClosestEnemy().transform;
         if (target == null)
         {
+            //STOP THE NULL REFERENCES PLEASE
+            target = null;
             return;
+
         }
         
         //Find the direction of the target.

@@ -91,6 +91,7 @@ MonoBehaviour:
   radius: 2
   player: {fileID: 0}
   explosionPrefab: {fileID: 4216786266582319140, guid: 526006057b709724c8e097c632d24f48, type: 3}
+  spriteRenderer: {fileID: 3943230613724409369}
 --- !u!1 &2628143436713115608
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,7 +4953,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1926579123
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0
@@ -5003,13 +5004,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7360117894645415720}
-  m_LocalRotation: {x: -0, y: -0, z: 0.70764667, w: 0.70656645}
+  m_LocalRotation: {x: -0, y: -0, z: 0.005562266, w: 0.99998456}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2628143436464753221}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.088}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.637}
 --- !u!212 &3943230613724409369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5049,11 +5050,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1926579123
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 76b03ae60e4c15143894edddd2c034bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.1, y: 0.29}

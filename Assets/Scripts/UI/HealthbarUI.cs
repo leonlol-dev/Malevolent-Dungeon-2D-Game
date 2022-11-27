@@ -44,7 +44,7 @@ public class HealthbarUI : MonoBehaviour
 
     public void UpdateHealthUI()
     {
-        Debug.Log(pHealth.currentHealth);
+        //Debug.Log(pHealth.currentHealth);
 
         //Update Text
         text.text = ("HP: " + pHealth.currentHealth);
@@ -57,7 +57,7 @@ public class HealthbarUI : MonoBehaviour
         //If player takes damage, apply chip effect.
         if (fillB > hFraction)
         {
-            Debug.Log("fillb less than hfraction");
+            //Debug.Log("fillb less than hfraction");
             healthBarFront.fillAmount = hFraction;
             healthBarBack.color = Color.red;
             pHealth.lerpTimer += Time.deltaTime;
@@ -69,7 +69,7 @@ public class HealthbarUI : MonoBehaviour
         //If player heals, apply chip effect.
         if (fillF < hFraction)
         {
-            Debug.Log("filla less than hfraction");
+            //Debug.Log("filla less than hfraction");
             healthBarBack.color = Color.green;
             healthBarBack.fillAmount = hFraction;
             pHealth.lerpTimer += Time.deltaTime;

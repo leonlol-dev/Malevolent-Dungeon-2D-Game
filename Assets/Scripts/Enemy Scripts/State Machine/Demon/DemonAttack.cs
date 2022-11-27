@@ -12,6 +12,7 @@ public class DemonAttack : DemonBaseState
     public override void EnterState(StateMachine_Demon demon)
     {
         demon.attackScript.canFire = true;
+        demon.dSetter.target = demon.player.transform;
         //demon.path.canMove = false;
     }
 
