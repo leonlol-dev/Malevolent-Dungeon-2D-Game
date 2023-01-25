@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Major Health Buff
   m_EditorClassIdentifier: 
   title: Max Health++
-  description: Increased max health.
+  description: Increase max health.
   amount: 25
   cost: 0

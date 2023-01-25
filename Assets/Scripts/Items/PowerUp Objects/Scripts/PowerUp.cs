@@ -28,13 +28,17 @@ public class PowerUp : MonoBehaviour
    
         if(collision.gameObject.tag == "Player" && !activated)
         {
+            GameObject player = collision.gameObject;
+
+
             //Set bool
             activated = true;
 
             //Play the clip.
             powerUpAudio.PlayOneShot(powerUpSounds[Random.Range(0, powerUpSounds.Length)]);
 
-            
+            //Send Player text;
+            player.GetComponent<PlayerText>().InstantiateText(powerUpEffect.description);
 
             rend.enabled = false;
             Destroy(gameObject, 0.75f);

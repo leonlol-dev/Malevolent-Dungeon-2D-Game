@@ -26,6 +26,10 @@ public class PlayerAudioHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();  
     }
 
+    public void playSound(AudioClip _clip)
+    {
+        audioSource.PlayOneShot(_clip);
+    }
     public void pickUpSound(bool _accept)
     {
         if (_accept)

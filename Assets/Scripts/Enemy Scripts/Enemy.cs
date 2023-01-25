@@ -72,11 +72,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        spriteRenderer.enabled = false;
-        healthBar.active = false;
-        bCollider.enabled = false;
         enemyLoot.DropLoot();
-        aSource.PlayOneShot(deathSound);
-        Destroy(this.gameObject, 3f);
+        player.GetComponent<PlayerAudioHandler>().playSound(deathSound);
+        Destroy(this.gameObject);
     }
 }

@@ -111,7 +111,7 @@ TextureImporter:
       213: -786432596313170985
     second: pixel_icons_by_oceansdream_35
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -132,6 +132,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -170,6 +171,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -185,6 +187,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -964,6 +990,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      pixel_icons_by_oceansdream_13: 3270351332349166288
+      pixel_icons_by_oceansdream_22: 1133057315985132710
+      pixel_icons_by_oceansdream_0: 4772136710934532599
+      pixel_icons_by_oceansdream_6: 4895071200968700983
+      pixel_icons_by_oceansdream_7: 3724052030013992400
+      pixel_icons_by_oceansdream_12: -2550754876277851823
+      pixel_icons_by_oceansdream_34: 2735203761349529177
+      pixel_icons_by_oceansdream_24: -5605378605989548741
+      pixel_icons_by_oceansdream_11: 2872111991127842577
+      pixel_icons_by_oceansdream_5: -1246065136915805666
+      pixel_icons_by_oceansdream_33: -7584855061546617514
+      pixel_icons_by_oceansdream_17: -3490969963958187715
+      pixel_icons_by_oceansdream_31: -4188449462523493362
+      pixel_icons_by_oceansdream_4: -4252949390220127418
+      pixel_icons_by_oceansdream_15: -1851448605851845410
+      pixel_icons_by_oceansdream_1: 5701881317478409644
+      pixel_icons_by_oceansdream_35: -786432596313170985
+      pixel_icons_by_oceansdream_23: 2661703351898629648
+      pixel_icons_by_oceansdream_25: -1101654798444942185
+      pixel_icons_by_oceansdream_30: 6495581915491745174
+      pixel_icons_by_oceansdream_19: 2299234406889969375
+      pixel_icons_by_oceansdream_29: -1444953129467669906
+      pixel_icons_by_oceansdream_32: 2320897334311945319
+      pixel_icons_by_oceansdream_28: -8408942062989512992
+      pixel_icons_by_oceansdream_20: -4073898460443094205
+      pixel_icons_by_oceansdream_10: -4151378012501820753
+      pixel_icons_by_oceansdream_27: 1546191752449854985
+      pixel_icons_by_oceansdream_2: 3610901184497584228
+      pixel_icons_by_oceansdream_9: 4155519423470362183
+      pixel_icons_by_oceansdream_18: -4560062870333045774
+      pixel_icons_by_oceansdream_3: 8512281786652398128
+      pixel_icons_by_oceansdream_14: -5203148438412340639
+      pixel_icons_by_oceansdream_26: 1152801755902978851
+      pixel_icons_by_oceansdream_21: -4188606254149938870
+      pixel_icons_by_oceansdream_8: -3943728713248559262
+      pixel_icons_by_oceansdream_16: 4627178653678642191
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -46,6 +46,7 @@ public class StateMachine_Demon : MonoBehaviour
     private bool playerInAttackRange;
     
     private Enemy enemyScript;
+    private Rigidbody rb;
     
 
 
@@ -57,6 +58,7 @@ public class StateMachine_Demon : MonoBehaviour
         path = GetComponent<AIPath>();
         enemyScript = GetComponent<Enemy>();
         attackScript = attackObject.GetComponent<EnemyRadialAttack>();
+        rb = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
 
         //Trigger the start function on all states
@@ -121,6 +123,19 @@ public class StateMachine_Demon : MonoBehaviour
 
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Boundary")
+        {
+            Debug.Log("Demon is stuck");
+            rb.isKinematic = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        rb.isKinematic = false;
+    }
     //States can't access these functions because they are not monobehaviour class so it's handled here.
     public void StartChildCoroutine(IEnumerator _coroutine)
     {
@@ -131,4 +146,6 @@ public class StateMachine_Demon : MonoBehaviour
     {
         Destroy(_obj);
     }
+
+    
 }
