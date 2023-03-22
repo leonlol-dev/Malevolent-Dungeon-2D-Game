@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -8,7 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth = 0;
     public EnemyHealthBarScript enemyHealth;
 
-
+    [SerializeField] private SpriteRenderer spriteRend;
     void Start()
     {
         //Set current health to max at start.
@@ -20,8 +21,16 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        StartCoroutine(FlashRed());
         currentHealth -= damage;
         enemyHealth.SetHealth(currentHealth);
+    }
+
+    public IEnumerator FlashRed()
+    {
+        spriteRend.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRend.color = Color.white;
     }
 
 

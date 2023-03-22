@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth;
     public float maxHealth = 100;
     public float lerpTimer;
+
+    [SerializeField] private SpriteRenderer spriteRend;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        StartCoroutine(FlashRed());
         currentHealth -= damage;
         lerpTimer = 0f;
     }
@@ -28,5 +31,12 @@ public class PlayerHealth : MonoBehaviour
     public void SetMaxHealth(int newMaxHealth)
     {
         maxHealth = newMaxHealth;
+    }
+
+    public IEnumerator FlashRed()
+    {
+        spriteRend.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRend.color = Color.white;
     }
 }

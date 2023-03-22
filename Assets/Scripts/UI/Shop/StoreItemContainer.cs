@@ -27,6 +27,7 @@ public class StoreItemContainer : MonoBehaviour
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDescription;
     public TextMeshProUGUI itemGold;
+    public ShopLogAnimation log;
     private Button button;
 
     
@@ -170,12 +171,18 @@ public class StoreItemContainer : MonoBehaviour
         else if(bought == true)
         {
             Debug.Log("You cannot buy this again.");
+            log.Clear();
+            log.SetText("You cannot buy this again.");
+            log.PlayAnimation();
 
         }
 
         else
         {
             Debug.Log("You cannot afford this.");
+            log.Clear();
+            log.SetText("You cannot afford this.");
+            log.PlayAnimation();
         }
 
 

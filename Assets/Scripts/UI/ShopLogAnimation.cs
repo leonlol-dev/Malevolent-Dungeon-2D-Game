@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TextTypingAnimation : MonoBehaviour
+public class ShopLogAnimation : MonoBehaviour
 {
 	public TextMeshProUGUI txt;
-	public string visitText;
+	public string story;
 
 	public bool animPlaying;
 	public float textSpeed = 0.125f;
@@ -14,34 +14,42 @@ public class TextTypingAnimation : MonoBehaviour
 	void Awake()
 	{
 		txt = GetComponent<TextMeshProUGUI>();
-		visitText = txt.text;
+        story = txt.text;
 		txt.text = "";
 		animPlaying = false;
 	}
 
-
+	public void SetText(string text)
+	{
+		story = text;
+	}
 	public void PlayAnimation()
     {
+
 		if (!animPlaying)
 		{
 			animPlaying = true;
 			StartCoroutine("PlayText");
+
 		}
 	}
 
 	public void Clear()
     {
-		txt.text = "";
+        StopCoroutine("PlayText");
+        txt.text = "";
 		animPlaying = false;
+		
     }
 
 	IEnumerator PlayText()
 	{
-		foreach (char c in visitText)
+		foreach (char c in story)
 		{
 			txt.text += c;
 			yield return new WaitForSeconds(textSpeed);
 		}
+
 	}
 
 
